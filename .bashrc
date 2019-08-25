@@ -278,12 +278,6 @@ export MONGODB_BIN="${MONGODB_HOME}/bin"
 # https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
 # sudo apt update
 # sudo apt install -y mongodb
-# sudo systemctl status mongodb
-# sudo systemctl start mongodb
-# sudo systemctl stop mongodb
-# sudo systemctl restart mongodb
-# sudo systemctl enable mongodb
-# sudo systemctl disable mongodb
 
 # Configure to start automatically with the server
 # cp mongo.service to /etc/systemd/system
@@ -302,6 +296,16 @@ alias mongo-disable='sudo systemctl disable mongodb'
 # https://stackoverflow.com/questions/51006934/mongodb-zip-installation-failed-in-ubuntu-18-04
 #export LD_LIBRARY_PATH=~/LD_LIBRARY/:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH="${HOME}/LD_LIBRARY"
+
+# ubuntu rabbitmq install
+# https://www.rabbitmq.com/
+# https://www.rabbitmq.com/download.html
+alias rabbitmq-restart='sudo systemctl restart rabbitmq-server'
+alias rabbitmq-start='sudo systemctl start rabbitmq-server'
+alias rabbitmq-stop='sudo systemctl stop rabbitmq-server'
+alias rabbitmq-status='sudo systemctl status rabbitmq-server'
+alias rabbitmq-enable='sudo systemctl enable rabbitmq-server'
+alias rabbitmq-disable='sudo systemctl disable rabbitmq-server'
 
 # Path
 #PATH="${JAVA_BIN}:${NODEJS_LIB}:${SCALA_BIN}:${SBT_BIN}:${STACK_BIN}:${INTELLIJ_LIB}:${WEBSTORM_LIB}:${TOMCAT_LIB}:${STYLISH_HASKELL}:$PATH"

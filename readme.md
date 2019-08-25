@@ -10,56 +10,56 @@
   - [Download the binary](https://kafka.apache.org/downloads)
 
 ```bash
-tar xvzf kafka_2.12-2.3.0.tgz
-mv ~/Downloads/kafka_2.12-2.3.0 ~/Documents/_applications/
+   $ tar xvzf kafka_2.12-2.3.0.tgz
+   $ mv ~/Downloads/kafka_2.12-2.3.0 ~/Documents/_applications/
 ```
 
 - Add these settings to `.bashrc` for personal preference
 
 ```bash
-export APPLICATIONS_HOME="${HOME}/Documents/_applications"
-export KAFKA_HOME="${APPLICATIONS_HOME}/kafka_2.12-2.3.0"
-export KAFKA_BIN="${KAFKA_HOME}/bin"
-export KAFKA_CONFIG="${KAFKA_HOME}/config"
+   export APPLICATIONS_HOME="${HOME}/Documents/_applications"
+   export KAFKA_HOME="${APPLICATIONS_HOME}/kafka_2.12-2.3.0"
+   export KAFKA_BIN="${KAFKA_HOME}/bin"
+   export KAFKA_CONFIG="${KAFKA_HOME}/config"
 
-alias kafka-restart='sudo systemctl restart kafka'
-alias kafka-start='sudo systemctl start kafka'
-alias kafka-stop='sudo systemctl stop kafka'
-alias kafka-status='sudo systemctl status kafka'
-alias kafka-enable='sudo systemctl enable kafka'
-alias kafka-disable='sudo systemctl disable kafka'
+   alias kafka-restart='sudo systemctl restart kafka'
+   alias kafka-start='sudo systemctl start kafka'
+   alias kafka-stop='sudo systemctl stop kafka'
+   alias kafka-status='sudo systemctl status kafka'
+   alias kafka-enable='sudo systemctl enable kafka'
+   alias kafka-disable='sudo systemctl disable kafka'
 ```
 
 - Configure to start `kafka` automatically with the server
 
 ```bash
-sudo cp kafka.service /etc/systemd/system
-sudo cp zookeepr.service /etc/systemd/system
+   $ sudo cp kafka.service /etc/systemd/system
+   $ sudo cp zookeepr.service /etc/systemd/system
 ```
 
 - Update the `systemd` service after copying `kafka/zookeeper` services 
 
 ```bash
-sudo systemctl daemon-reload
+   $ sudo systemctl daemon-reload
 ```
 
 - Enable to auto-start `kafka` service
 
 ```bash
-kafka-enable
+   $ kafka-enable
 ```
 
 - Start/Re-Start `kafka` service
 
 ```bash
-kafka-start
-kafka-restart
+   $ kafka-start
+   $ kafka-restart
 ```
 
 - Check `kafka` version (OR `sudo systemctl status kafka`)
 
 ```bash
-kafka-status
+   $ kafka-status
 ```
 
 - Installing `kafkatool` UI
