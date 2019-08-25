@@ -56,5 +56,11 @@ kafka-start
 kafka-restart
 ```
 
+- Check `kafka` version (OR `sudo systemctl status kafka`)
+
+```bash
+kafka-status
+```
+
 - Installing `kafkatool` UI
   - [Download the latest Kafka Tool](http://www.kafkatool.com/download.html)
