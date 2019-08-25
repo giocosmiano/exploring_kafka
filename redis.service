@@ -1,0 +1,13 @@
+[Unit]
+Description=Redis In-Memory Data Store 
+After=network.target
+Documentation=https://redis.io/documentation
+
+[Service]
+User=gio
+ExecStart=/home/gio/Documents/_applications/redis-5.0.5/src/redis-server /home/gio/Documents/_applications/redis-5.0.5/redis.conf
+ExecStop=/home/gio/Documents/_applications/redis-5.0.5/src/redis-cli shutdown
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

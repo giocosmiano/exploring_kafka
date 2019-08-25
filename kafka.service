@@ -1,0 +1,15 @@
+[Unit]
+Requires=zookeeper.service
+After=zookeeper.service
+Documentation=https://kafka.apache.org/documentation
+
+[Service]
+Type=simple
+User=gio
+ExecStart=/bin/sh -c '/home/gio/Documents/_applications/kafka_2.12-2.3.0/bin/kafka-server-start.sh /home/gio/Documents/_applications/kafka_2.12-2.3.0/config/server.properties > /home/gio/Documents/_applications/kafka_2.12-2.3.0/kafka.log 2>&1'
+ExecStop=/home/gio/Documents/_applications/kafka_2.12-2.3.0/bin/kafka-server-stop.sh
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
+

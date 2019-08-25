@@ -1,0 +1,14 @@
+[Unit]
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+Documentation=https://zookeeper.apache.org
+
+[Service]
+Type=simple
+User=gio
+ExecStart=/home/gio/Documents/_applications/kafka_2.12-2.3.0/bin/zookeeper-server-start.sh /home/gio/Documents/_applications/kafka_2.12-2.3.0/config/zookeeper.properties
+ExecStop=/home/gio/Documents/_applications/kafka_2.12-2.3.0/bin/zookeeper-server-stop.sh
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
