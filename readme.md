@@ -1,7 +1,7 @@
-- [Apache ZooKeeper](https://zookeeper.apache.org/)
+- [Apache ZooKeeper - Centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services](https://zookeeper.apache.org/)
   - [Documentation](https://zookeeper.apache.org/doc/r3.5.5/)
 
-- [Apache Kafka](https://kafka.apache.org/)
+- [Apache Kafka - Distributed Streaming Platform](https://kafka.apache.org/)
   - [Quick Start](https://kafka.apache.org/quickstart)
   - [Introduction](https://kafka.apache.org/intro)
   - [How To Install Apache Kafka on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-18-04)
