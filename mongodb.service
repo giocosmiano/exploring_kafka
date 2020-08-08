@@ -5,7 +5,8 @@ Documentation=https://docs.mongodb.org/manual
 
 [Service]
 User=gio
-ExecStart=/home/gio/Documents/_applications/mongodb-linux-x86_64-ubuntu1804-4.2.0/bin/mongod --auth --config /home/gio/Documents/_applications/mongodb-linux-x86_64-ubuntu1804-4.2.0/config/mongodb.conf
+ExecStart=/usr/bin/mongod --auth --config /etc/mongodb.conf
+#ExecStart=/home/gio/Documents/_applications/mongodb-linux-x86_64-ubuntu1804-4.2.0/bin/mongod --auth --config /home/gio/Documents/_applications/mongodb-linux-x86_64-ubuntu1804-4.2.0/config/mongodb.conf
 Restart=always
 
 [Install]
