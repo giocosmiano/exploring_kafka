@@ -6,8 +6,8 @@ Documentation=https://zookeeper.apache.org
 [Service]
 Type=simple
 User=gio
-ExecStart=/home/gio/Documents/_applications/kafka_2.12-2.3.0/bin/zookeeper-server-start.sh /home/gio/Documents/_applications/kafka_2.12-2.3.0/config/zookeeper.properties
-ExecStop=/home/gio/Documents/_applications/kafka_2.12-2.3.0/bin/zookeeper-server-stop.sh
+ExecStart=/home/gio/Documents/_applications/kafka_2.12-2.5.0/bin/zookeeper-server-start.sh /home/gio/Documents/_applications/kafka_2.12-2.5.0/config/zookeeper.properties
+ExecStop=/home/gio/Documents/_applications/kafka_2.12-2.5.0/bin/zookeeper-server-stop.sh
 Restart=on-abnormal
 
 [Install]
