@@ -62,5 +62,23 @@
    $ kafka-status
 ```
 
-- Installing `kafkatool` UI
-  - [Download the latest Kafka Tool](http://www.kafkatool.com/download.html)
+- Kafka UI Tools
+  - [Kafka Tool](http://www.kafkatool.com/download.html)
+
+  - [CMAK - Cluster Manager for Apache Kafka](https://github.com/yahoo/CMAK)
+
+  - [KaDeck](https://www.xeotek.com/kadeck/)
+    - [Docker Hub - KaDeck Web](https://hub.docker.com/r/xeotek/kadeckweb)
+    - [Docker Hub - KaDeck All-In-One](https://hub.docker.com/r/xeotek/kadeck-allinone)
+
+  - [KafDrop](https://github.com/obsidiandynamics/kafdrop)
+    - [Docker Hub](https://hub.docker.com/r/obsidiandynamics/kafdrop)
+    - [KafDrop in local Docker instance](http://localhost:9000/)
+    
+```shell script
+docker run -d --rm -p 9000:9000 \
+    -e KAFKA_BROKERCONNECT=localhost:9092 \
+    -e JVM_OPTS="-Xms32M -Xmx64M" \
+    -e SERVER_SERVLET_CONTEXTPATH="/" \
+    obsidiandynamics/kafdrop:latest
+```
