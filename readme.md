@@ -157,22 +157,22 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
 
 - Kafka Diagrams
   - Multiple Integrations
-    ![Multiple Integrations](./images/multiple-integrations-before.jpg)
+    ![Multiple Integrations](images/multiple-integrations-before.jpg?raw=true)
   
   - Multiple Integrations with Kafka
-    ![Multiple Integrations with Kafka](./images/multiple-integrations-after.jpg)  
+    ![Multiple Integrations with Kafka](images/multiple-integrations-after.jpg?raw=true)  
   
   - Streaming ETL
-    ![Kafka Streaming ETL](./images/kafka_streaming_etl.png)  
+    ![Kafka Streaming ETL](images/kafka_streaming_etl.png?raw=true)  
   
   - Connect
-    ![Kafka Connect](./images/kafka-connect-image.png)  
+    ![Kafka Connect](images/kafka-connect-image.png?raw=true)  
   
   - Connect
-    ![Kafka Connect](images/kafka-connect-3.jpg)  
+    ![Kafka Connect](images/kafka-connect-3.jpg?raw=true)  
   
   - Connect (JDBC/NoSQL DB to ElasticSearch)
-    ![Kafka Connect](images/kafka-connect-2.jpg)  
+    ![Kafka Connect](images/kafka-connect-2.jpg?raw=true)  
   
   
   
