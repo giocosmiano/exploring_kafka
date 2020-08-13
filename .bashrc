@@ -184,6 +184,12 @@ export WEBSTORM_LIB="${WEBSTORM_HOME}/bin"
 export WEBSTORM_ARGS="-Xms1024m -Xmx2048m -XX:MaxPermSize=512m"
 alias webstorm='"${WEBSTORM_LIB}"/webstorm.sh;'
 
+# IntelliJ PyCharm
+export PYCHARM_HOME="${APPLICATIONS_HOME}/pycharm-2019.3.3"
+export PYCHARM_LIB="${PYCHARM_HOME}/bin"
+export PYCHARM_ARGS="-Xms1024m -Xmx2048m -XX:MaxPermSize=512m"
+alias pycharm='"${PYCHARM_LIB}"/pycharm.sh;'
+
 # NodeJS
 # ubuntu nodejs install
 # https://nodejs.org/en/download/package-manager/
@@ -194,6 +200,41 @@ alias nodejs='"${NODEJS_LIB}"/node;'
 
 #stylish-haskell
 export STYLISH_HASKELL="${HOME}/.local/bin"
+
+# ElasticSearch
+# https://www.elastic.co/
+export ELASTIC_SEARCH_HOME="${APPLICATIONS_HOME}/elasticsearch-6.4.3"
+export ELASTIC_SEARCH_BIN="${ELASTIC_SEARCH_HOME}/bin"
+
+# Kibana
+# https://www.elastic.co/downloads/
+export KIBANA_HOME="${APPLICATIONS_HOME}/kibana-6.4.3"
+export KIBANA_BIN="${KIBANA_HOME}/bin"
+
+# Logstash
+# https://www.elastic.co/downloads/
+export LOGSTASH_HOME="${APPLICATIONS_HOME}/logstash-6.4.3"
+export LOGSTASH_BIN="${LOGSTASH_HOME}/bin"
+
+# Configure to start automatically with the server
+# cp kafka.service to /etc/systemd/system
+# cp zookeeper.service to /etc/systemd/system
+alias docker-restart='sudo systemctl restart docker'
+alias docker-start='sudo systemctl start docker'
+alias docker-stop='sudo systemctl stop docker'
+alias docker-status='sudo systemctl status docker'
+alias docker-enable='sudo systemctl enable docker'
+alias docker-disable='sudo systemctl disable docker'
+
+# Confluent Kafka
+# https://www.confluent.io/download/#
+# https://docs.confluent.io/current/
+# https://docs.confluent.io/current/quickstart/ce-quickstart.html
+# https://docs.confluent.io/current/installation/cli-reference.html
+# https://docs.confluent.io/current/cli/command-reference/confluent-local/index.html#confluent-local
+# https://docs.confluent.io/current/cli/command-reference/confluent-local/confluent_local_start.html
+export CONFLUENT_HOME="${APPLICATIONS_HOME}/confluent-5.5.1"
+export CONFLUENT_BIN="${CONFLUENT_HOME}/bin"
 
 # Kafka
 # ubuntu kafka install
@@ -227,6 +268,8 @@ alias kafka-disable='sudo systemctl disable kafka'
 # kafka ui console
 # Kafka Tool 2.0.4 --> kafkatool.sh
 # http://www.kafkatool.com/download.html
+export KAFKA_TOOL_HOME="${APPLICATIONS_HOME}/kafkatool2"
+export KAFKA_TOOL_BIN="${KAFKA_TOOL_HOME}"
 
 # Zookeeper
 # ubuntu zookeeper install
@@ -281,12 +324,22 @@ export MONGODB_BIN="${MONGODB_HOME}/bin"
 
 # Configure to start automatically with the server
 # cp mongo.service to /etc/systemd/system
-alias mongo-restart='sudo systemctl restart mongodb'
-alias mongo-start='sudo systemctl start mongodb'
-alias mongo-stop='sudo systemctl stop mongodb'
-alias mongo-status='sudo systemctl status mongodb'
-alias mongo-enable='sudo systemctl enable mongodb'
-alias mongo-disable='sudo systemctl disable mongodb'
+alias mongodb-restart='sudo systemctl restart mongod'
+alias mongodb-start='sudo systemctl start mongod'
+alias mongodb-stop='sudo systemctl stop mongod'
+alias mongodb-status='sudo systemctl status mongod'
+alias mongodb-enable='sudo systemctl enable mongod'
+alias mongodb-disable='sudo systemctl disable mongod'
+
+# GCosmiano Original mongod commands - 2020-07-25
+# Configure to start automatically with the server
+# cp mongo.service to /etc/systemd/system
+#alias mongodb-restart='sudo systemctl restart mongodb'
+#alias mongodb-start='sudo systemctl start mongodb'
+#alias mongodb-stop='sudo systemctl stop mongodb'
+#alias mongodb-status='sudo systemctl status mongodb'
+#alias mongodb-enable='sudo systemctl enable mongodb'
+#alias mongodb-disable='sudo systemctl disable mongodb'
 
 # ubuntu mongodb UI
 # https://nosqlbooster.com/downloads
@@ -307,6 +360,33 @@ alias rabbitmq-status='sudo systemctl status rabbitmq-server'
 alias rabbitmq-enable='sudo systemctl enable rabbitmq-server'
 alias rabbitmq-disable='sudo systemctl disable rabbitmq-server'
 
+# ubuntu cassandra install
+# http://cassandra.apache.org/
+# Configure to start automatically with the server
+# cp cassandra.service to /etc/systemd/system
+export CASSANDRA_HOME="${APPLICATIONS_HOME}/apache-cassandra-3.11.4"
+export CASSANDRA_BIN="${CASSANDRA_HOME}/bin"
+
+alias cassandra-restart='sudo systemctl restart cassandra.service'
+alias cassandra-start='sudo systemctl start cassandra.service'
+alias cassandra-stop='sudo systemctl stop cassandra.service'
+alias cassandra-status='sudo systemctl status cassandra.service'
+alias cassandra-enable='sudo systemctl enable cassandra.service'
+alias cassandra-disable='sudo systemctl disable cassandra.service'
+
+# Docker
+# https://docs.docker.com/engine/install/ubuntu/
+alias docker-restart='sudo systemctl restart docker'
+alias docker-start='sudo systemctl start docker'
+alias docker-stop='sudo systemctl stop docker'
+alias docker-status='sudo systemctl status docker'
+alias docker-enable='sudo systemctl enable docker'
+alias docker-disable='sudo systemctl disable docker'
+
+# Maven
+export MAVEN_HOME="${APPLICATIONS_HOME}/apache-maven-3.6.3"
+export MAVEN_BIN="${MAVEN_HOME}/bin"
+
 # Path
 #PATH="${JAVA_BIN}:${NODEJS_LIB}:${SCALA_BIN}:${SBT_BIN}:${STACK_BIN}:${INTELLIJ_LIB}:${WEBSTORM_LIB}:${TOMCAT_LIB}:${STYLISH_HASKELL}:$PATH"
 #PATH="${JAVA_BIN}:${NODEJS_LIB}:${SCALA_BIN}:${SBT_BIN}:${GHC_HOME}:${STACK_BIN}:${GRADLE_BIN}:${INTELLIJ_LIB}:${WEBSTORM_LIB}:${TOMCAT_LIB}:$PATH"
@@ -319,6 +399,7 @@ PATH="${GRADLE_BIN}:$PATH"
 PATH="${GROOVY_BIN}:$PATH"
 PATH="${INTELLIJ_LIB}:$PATH"
 PATH="${WEBSTORM_LIB}:$PATH"
+PATH="${PYCHARM_LIB}:$PATH"
 PATH="${TOMCAT_LIB}:$PATH"
 PATH="${KAFKA_BIN}:$PATH"
 PATH="${KAFKA_CONFIG}:$PATH"
@@ -326,13 +407,21 @@ PATH="${ZOOKEEPER_BIN}:$PATH"
 PATH="${MONGODB_BIN}:$PATH"
 PATH="${LD_LIBRARY_PATH}:$PATH"
 PATH="${REDIS_BIN}:$PATH"
+PATH="${CASSANDRA_BIN}:$PATH"
+PATH="${MAVEN_BIN}:$PATH"
+PATH="${ELASTIC_SEARCH_BIN}:$PATH"
+PATH="${KIBANA_BIN}:$PATH"
+PATH="${LOGSTASH_BIN}:$PATH"
+PATH="${KAFKA_TOOL_BIN}:$PATH"
+PATH="${CONFLUENT_BIN}:$PATH"
+
 export PATH
 
 alias jdk8='cd ~; . jdk8.sh'
-alias jdk11='cd ~; . jdk11.sh'
 alias jdk12='cd ~; . jdk12.sh'
-alias openjdk11='cd ~; . openjdk11.sh'
+alias jdk14='cd ~; . jdk14.sh'
 alias openjdk12='cd ~; . openjdk12.sh'
+alias openjdk14='cd ~; . openjdk14.sh'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

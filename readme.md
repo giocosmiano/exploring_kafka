@@ -82,3 +82,98 @@ docker run -d --rm -p 9000:9000 \
     -e SERVER_SERVLET_CONTEXTPATH="/" \
     obsidiandynamics/kafdrop:latest
 ```
+
+- Kafka sample commands
+```shell script
+# create input/output topics
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic sample-input-topic
+
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic sample-output-topic
+
+# check/describe the topics created
+bin/kafka-topics.sh --list --zookeeper localhost:2181 --topic sample-input-topic
+
+bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic sample-input-topic
+
+bin/kafka-topics.sh --delete --zookeeper localhost:2181 --topic sample-input-topic
+
+# start kafka producer to manually enter some data
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sample-input-topic
+
+# enter
+kafka hello world
+kafka sample data processing
+kafka the quick brown fox jumps over the lazy dog
+# exit
+
+# start kafka producer to pipe in some file
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sample-input-topic < sampleTextFile.txt
+
+# start kafka consumer
+bin/kafka-console-consumer.sh --topic sample-input-topic --bootstrap-server localhost:9092 --from-beginning
+
+bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
+    --topic sample-input-topic \
+    --from-beginning \
+    --formatter kafka.tools.DefaultMessageFormatter \
+    --property print.key=true \
+    --property print.value=true \
+    --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer \
+    --property value.deserializer=org.apache.kafka.common.serialization.IntegerDeserializer
+```
+
+- [Confluent Platform](https://www.confluent.io/)
+  - [Download](https://www.confluent.io/download/)
+    - [Apache Kafka using Confluent Platform (Docker)](https://docs.confluent.io/current/quickstart/ce-docker-quickstart.html)
+    - [Apache Kafka using Confluent Platform (Local)](https://docs.confluent.io/current/quickstart/ce-quickstart.html)
+  - [Documentation](https://docs.confluent.io/current/)
+  - [Configuration Reference](https://docs.confluent.io/current/installation/configuration/index.html)
+  - [Quick Start for Apache Kafka using Confluent Platform (Local)](https://docs.confluent.io/current/quickstart/ce-quickstart.html#quick-start-for-apache-kafka-using-cp-local)
+  - [CLI Command Reference](https://docs.confluent.io/current/cli/command-reference/index.html#cli-command-reference)
+  - [Confluent `local` commands](https://docs.confluent.io/current/cli/command-reference/confluent-local/index.html#confluent-local)
+  - [Confluent `localhost` Control Center](http://localhost:9021/clusters)
+  
+- [Confluent Connectors](https://www.confluent.io/hub/)
+  - [MongoDB](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
+    - [Getting Started with the MongoDB Connector for Apache Kafka and MongoDB](https://www.confluent.io/blog/getting-started-mongodb-connector-for-apache-kafka-and-mongodb/)
+  - [Elastic Search](https://www.confluent.io/hub/confluentinc/kafka-connect-elasticsearch)
+    - [Kafka Connect Elasticsearch Connector in Action](https://www.confluent.io/blog/kafka-elasticsearch-connector-tutorial/)
+  - [Redis](https://www.confluent.io/hub/jcustenborder/kafka-connect-redis)
+  - [MySQL](https://www.confluent.io/hub/debezium/debezium-connector-mysql)
+  - [RabbitMQ](https://www.confluent.io/hub/confluentinc/kafka-connect-rabbitmq) `(Commercial License)`
+
+- [Confluent Platform Logs](https://docs.confluent.io/current/cli/command-reference/confluent-local/index.html#confluent-local) are in
+```shell script
+/tmp/confluent.0YtCGnLS/
+```
+
+- Kafka Blogs
+  - [Kafka Architecture](https://dzone.com/articles/kafka-architecture)
+  - [4 Key Benefits of Apache Kafka for Real-Time Data](https://business-staging.udemy.com/blog/4-key-benefits-of-apache-kafka-for-real-time-data/)
+  - [Kafka Connectors Without Kafka](https://dzone.com/articles/kafka-connectors-without-kafka)
+  - [Kafka Streams](https://dzone.com/articles/kafka-streams-1)
+  - [Kafka Technical Overview](https://dzone.com/articles/kafka-technical-overview)
+  - [Kafka Detailed Design and Ecosystem](https://dzone.com/articles/kafka-detailed-design-and-ecosystem)
+
+- Kafka Diagrams
+  - Multiple Integrations
+    ![Multiple Integrations](./images/multiple-integrations-before.jpg)
+  
+  - Multiple Integrations with Kafka
+    ![Multiple Integrations with Kafka](./images/multiple-integrations-after.jpg)  
+  
+  - Streaming ETL
+    ![Kafka Streaming ETL](./images/kafka_streaming_etl.png)  
+  
+  - Connect
+    ![Kafka Connect](./images/kafka-connect-image.png)  
+  
+  - Connect
+    ![Kafka Connect](images/kafka-connect-3.jpg)  
+  
+  - Connect (JDBC/NoSQL DB to ElasticSearch)
+    ![Kafka Connect](images/kafka-connect-2.jpg)  
+  
+  
+  
+  
