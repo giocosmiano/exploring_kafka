@@ -130,7 +130,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
   - [Configuration Reference](https://docs.confluent.io/current/installation/configuration/index.html)
   - [Quick Start for Apache Kafka using Confluent Platform (Local)](https://docs.confluent.io/current/quickstart/ce-quickstart.html#quick-start-for-apache-kafka-using-cp-local)
   - [CLI Command Reference](https://docs.confluent.io/current/cli/command-reference/index.html#cli-command-reference)
-  - [Confluent `local` commands](https://docs.confluent.io/current/cli/command-reference/confluent-local/index.html#confluent-local)
+  - [Confluent `local` commands for single node instance locally](https://docs.confluent.io/current/cli/command-reference/confluent-local/index.html#confluent-local)
   - [Confluent `localhost` Control Center](http://localhost:9021/clusters)
   
 - [Confluent Connectors](https://www.confluent.io/hub/)
@@ -162,18 +162,45 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
   - Multiple Integrations with Kafka
     ![Multiple Integrations with Kafka](images/multiple-integrations-after.jpg?raw=true)  
   
-  - Streaming ETL
-    ![Kafka Streaming ETL](images/kafka_streaming_etl.png?raw=true)  
-  
-  - Connect
+  - Kafka Connect
     ![Kafka Connect](images/kafka-connect-image.png?raw=true)  
   
-  - Connect
     ![Kafka Connect](images/kafka-connect-3.jpg?raw=true)  
   
-  - Connect (JDBC/NoSQL DB to ElasticSearch)
     ![Kafka Connect](images/kafka-connect-2.jpg?raw=true)  
   
+    ![Kafka Streaming ETL](images/kafka_streaming_etl.png?raw=true)  
   
-  
+- [ksql - Stream SQL Engine for Apache Kafka](https://github.com/confluentinc/ksql)
+  - [ksqlDB and Kafka Streams](https://docs.confluent.io/current/streams-ksql.html)
+  - [Introduction to ksqlDB](https://www.youtube.com/watch?v=7mGBxG2NhVQ)
+  - [ksqlDB Tutorial](https://docs.ksqldb.io/en/latest/tutorials/)
+  - [ksqlDB Quickstart](https://ksqldb.io/quickstart.html)
+  - [Confluent local](https://docs.confluent.io/current/cli/command-reference/confluent-local/index.html#confluent-local)
+  - [Starting the ksqlDB Server](https://docs.confluent.io/current/ksqldb/installing.html#start-ksql-server)
+```shell script
+$ confluent local list
+
+$ confluent local start ksql-server
+```
+OR
+```shell script
+$ bin/ksql-server-start etc/ksqldb/ksql-server.properties
+
+$ ksql
+```
+
+- [Confluent Connect](https://docs.confluent.io/current/connect/userguide.html#connect-userguide)
+  - [Moving Data In and Out of Kafka](https://docs.confluent.io/current/connect/quickstart.html)
+  - [From Zero to Hero with Kafka Connect](https://www.youtube.com/watch?v=Jkcp28ki82k)
+```shell script
+$ confluent local list
+
+$ confluent local start connect
+```
+
+- [Confluent git repo](https://github.com/confluentinc)
+  - [Kafka Stream Examples](https://github.com/confluentinc/kafka-streams-examples)
+  - [Confluent Platform Examples](https://github.com/confluentinc/examples)  
+  - [Demo Samples](https://github.com/confluentinc/demo-scene)  
   
