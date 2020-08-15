@@ -62,7 +62,7 @@
    $ kafka-status
 ```
 
-- Kafka UI Tools
+## Kafka UI Tools
   - [Kafka Tool](http://www.kafkatool.com/download.html)
 
   - [CMAK - Cluster Manager for Apache Kafka](https://github.com/yahoo/CMAK)
@@ -83,7 +83,50 @@ docker run -d --rm -p 9000:9000 \
     obsidiandynamics/kafdrop:latest
 ```
 
-- Kafka sample commands
+## [lensesIO - fast-data-dev](https://github.com/lensesio)
+  - [fast-data-dev](https://github.com/lensesio/fast-data-dev)
+  - [Docker Hub](https://hub.docker.com/r/landoop/fast-data-dev)
+    
+```shell script
+    docker pull landoop/fast-data-dev
+    docker run --rm --net=host lensesio/fast-data-dev
+```
+
+## [lensesIO - kafka-topics-ui](https://github.com/lensesio)
+  - [kafka-topics-ui](https://github.com/lensesio/kafka-topics-ui)
+  - [Docker Hub](https://hub.docker.com/r/landoop/kafka-topics-ui)
+    
+```shell script
+    docker pull landoop/kafka-topics-ui
+    docker run --rm -it -p 8000:8000 \
+               -e "KAFKA_REST_PROXY_URL=https://kafka-rest-proxy-host:port" \
+               -e "PROXY=true" \
+               landoop/kafka-topics-ui
+```
+
+## [lensesIO - schema-registry-ui](https://github.com/lensesio)
+  - [schema-registry-ui](https://github.com/lensesio/schema-registry-ui)
+  - [Docker Hub](https://hub.docker.com/r/landoop/schema-registry-ui)
+    
+```shell script
+    docker pull landoop/schema-registry-ui
+    docker run --rm -p 8000:8000 \
+               -e "SCHEMAREGISTRY_URL=http://confluent-schema-registry-host:port" \
+               landoop/schema-registry-ui
+```
+
+## [lensesIO - kafka-connect-ui](https://github.com/lensesio)
+  - [kafka-connect-ui](https://github.com/lensesio/kafka-connect-ui)
+  - [Docker Hub](https://hub.docker.com/r/landoop/kafka-connect-ui)
+    
+```shell script
+    docker pull landoop/kafka-connect-ui
+    docker run --rm -it -p 8000:8000 \
+               -e "CONNECT_URL=http://connect.distributed.url" \
+               landoop/kafka-connect-ui
+```
+
+## Kafka sample commands
 ```shell script
 # create input/output topics
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic sample-input-topic
@@ -122,7 +165,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
     --property value.deserializer=org.apache.kafka.common.serialization.IntegerDeserializer
 ```
 
-- [Confluent Platform](https://www.confluent.io/)
+## [Confluent Platform](https://www.confluent.io/)
   - [Download](https://www.confluent.io/download/)
     - [Apache Kafka using Confluent Platform (Docker)](https://docs.confluent.io/current/quickstart/ce-docker-quickstart.html)
     - [Apache Kafka using Confluent Platform (Local)](https://docs.confluent.io/current/quickstart/ce-quickstart.html)
@@ -133,7 +176,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
   - [Confluent `local` commands for single node instance locally](https://docs.confluent.io/current/cli/command-reference/confluent-local/index.html#confluent-local)
   - [Confluent `localhost` Control Center](http://localhost:9021/clusters)
   
-- [Confluent Connectors](https://www.confluent.io/hub/)
+## [Confluent Connectors](https://www.confluent.io/hub/)
   - [MongoDB](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
     - [Getting Started with the MongoDB Connector for Apache Kafka and MongoDB](https://www.confluent.io/blog/getting-started-mongodb-connector-for-apache-kafka-and-mongodb/)
   - [Elastic Search](https://www.confluent.io/hub/confluentinc/kafka-connect-elasticsearch)
@@ -147,7 +190,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
 /tmp/confluent.0YtCGnLS/
 ```
 
-- Kafka Blogs
+## Kafka Blogs
   - [Kafka Architecture](https://dzone.com/articles/kafka-architecture)
   - [4 Key Benefits of Apache Kafka for Real-Time Data](https://business-staging.udemy.com/blog/4-key-benefits-of-apache-kafka-for-real-time-data/)
   - [Kafka Connectors Without Kafka](https://dzone.com/articles/kafka-connectors-without-kafka)
@@ -155,7 +198,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
   - [Kafka Technical Overview](https://dzone.com/articles/kafka-technical-overview)
   - [Kafka Detailed Design and Ecosystem](https://dzone.com/articles/kafka-detailed-design-and-ecosystem)
 
-- Kafka Diagrams
+## Kafka Diagrams
   - Multiple Integrations
     ![Multiple Integrations](images/multiple-integrations-before.jpg?raw=true)
   
@@ -178,10 +221,13 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
   - [ksqlDB Quickstart](https://ksqldb.io/quickstart.html)
   - [Confluent local](https://docs.confluent.io/current/cli/command-reference/confluent-local/index.html#confluent-local)
   - [Starting the ksqlDB Server](https://docs.confluent.io/current/ksqldb/installing.html#start-ksql-server)
+
 ```shell script
 $ confluent local list
 
-$ confluent local start ksql-server
+$ confluent local start # to start `all` services
+
+$ confluent local start ksql-server # to start `ksql-server` service only
 ```
 OR
 ```shell script
@@ -190,16 +236,18 @@ $ bin/ksql-server-start etc/ksqldb/ksql-server.properties
 $ ksql
 ```
 
-- [Confluent Connect](https://docs.confluent.io/current/connect/userguide.html#connect-userguide)
+## [Confluent Connect](https://docs.confluent.io/current/connect/userguide.html#connect-userguide)
   - [Moving Data In and Out of Kafka](https://docs.confluent.io/current/connect/quickstart.html)
   - [From Zero to Hero with Kafka Connect](https://www.youtube.com/watch?v=Jkcp28ki82k)
 ```shell script
 $ confluent local list
 
-$ confluent local start connect
+$ confluent local start # to start `all` services
+
+$ confluent local start connect # to start `connect` service only
 ```
 
-- [Confluent git repo](https://github.com/confluentinc)
+## [Confluent git repo](https://github.com/confluentinc)
   - [Kafka Stream Examples](https://github.com/confluentinc/kafka-streams-examples)
   - [Confluent Platform Examples](https://github.com/confluentinc/examples)  
   - [Demo Samples](https://github.com/confluentinc/demo-scene)  
