@@ -62,10 +62,29 @@
    $ kafka-status
 ```
 
+## [CMAK - Cluster Manager for Apache Kafka](https://github.com/yahoo/CMAK)
+  - [Setting up Kafka management for kafka cluster](https://codeforgeek.com/setting-up-kafka-management-for-kafka-cluster/)
+  - [kafka-manager-docker](https://github.com/hleb-albau/kafka-manager-docker)
+  - [How to install Kafka Manager for Managing kafka cluster](http://manastri.blogspot.com/2020/03/how-to-install-kafka-manager-for.html)
+
+  - change the following in conf/application.conf
+```
+kafka-manager.zkhosts="localhost:2181"
+basicAuthentication.username="admin"
+basicAuthentication.password="password"
+```
+  - Adding new cluster in Kafka manager
+```
+:2181,:2181,:2181
+```
+
+```shell script
+$HOME/jdk14.sh
+$HOME/Documents/_applications/cmak-3.0.0.5/bin/cmak -Dconfig.file=$HOME/Documents/_applications/cmak-3.0.0.5/conf/application.conf -Dcmak.zkhosts="localhost:2181"
+```
+
 ## Kafka UI Tools
   - [Kafka Tool](http://www.kafkatool.com/download.html)
-
-  - [CMAK - Cluster Manager for Apache Kafka](https://github.com/yahoo/CMAK)
 
   - [KaDeck](https://www.xeotek.com/kadeck/)
     - [Docker Hub - KaDeck Web](https://hub.docker.com/r/xeotek/kadeckweb)

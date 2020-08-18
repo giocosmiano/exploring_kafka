@@ -132,9 +132,8 @@ alias vpn='/opt/cisco/anyconnect/bin/vpn'
 alias vpnui='/opt/cisco/anyconnect/bin/vpnui'
 
 # Java
-export JDK8_HOME="${APPLICATIONS_HOME}/jdk1.8.0_202"
-export JDK11_HOME="${APPLICATIONS_HOME}/jdk-11.0.2"
-export JDK12_HOME="${APPLICATIONS_HOME}/jdk-12.0.1"
+export JDK8_HOME="${APPLICATIONS_HOME}/amazon-corretto-8.252.09.1-linux-x64"
+export JDK14_HOME="${APPLICATIONS_HOME}/openjdk-14.0.1"
 
 #export JAVA_HOME="${JDK8_HOME}"
 #export JAVA_BIN="${JAVA_HOME}/bin"
@@ -142,12 +141,12 @@ export JVM_ARGS="-Xms512m -Xmx1024m -XX:MaxPermSize=512m"
 
 # Scala
 # https://www.scala-lang.org/download/
-export SCALA_HOME="${APPLICATIONS_HOME}/scala-2.12.8"
+export SCALA_HOME="${APPLICATIONS_HOME}/scala-2.12.11"
 export SCALA_BIN="${SCALA_HOME}/bin"
 
 # SBT
 # https://www.scala-sbt.org/download.html
-export SBT_HOME="${APPLICATIONS_HOME}/sbt"
+export SBT_HOME="${APPLICATIONS_HOME}/sbt-1.3.10"
 export SBT_BIN="${SBT_HOME}/bin"
 
 # Stack Haskell
@@ -158,12 +157,12 @@ export STACK_BIN="${STACK_HOME}"
 
 # Gradle
 # https://gradle.org/install/
-export GRADLE_HOME="${APPLICATIONS_HOME}/gradle-5.3.1"
+export GRADLE_HOME="${APPLICATIONS_HOME}/gradle-6.5"
 export GRADLE_BIN="${GRADLE_HOME}/bin"
 
 # Groovy
 # http://groovy-lang.org/download.html
-export GROOVY_HOME="${APPLICATIONS_HOME}/groovy-2.5.7"
+export GROOVY_HOME="${APPLICATIONS_HOME}/groovy-3.0.4"
 export GROOVY_BIN="${GROOVY_HOME}/bin"
 
 # Tomcat
@@ -173,13 +172,13 @@ export TOMCAT_HOME="${APPLICATIONS_HOME}/apache-tomcat/apache-tomcat-8.0.8"
 export TOMCAT_LIB="${TOMCAT_HOME}\bin"
 
 # IntelliJ Idea
-export INTELLIJ_HOME="${APPLICATIONS_HOME}/idea-IU-183.4284.148"
+export INTELLIJ_HOME="${APPLICATIONS_HOME}/idea-IU-193.6494.35"
 export INTELLIJ_LIB="${INTELLIJ_HOME}/bin"
 export INTELLIJ_ARGS="-Xms1024m -Xmx2048m -XX:MaxPermSize=512m"
 alias intellij='"${INTELLIJ_LIB}"/idea.sh;'
 
 # IntelliJ Webstorm
-export WEBSTORM_HOME="${APPLICATIONS_HOME}/WebStorm-183.4284.130"
+export WEBSTORM_HOME="${APPLICATIONS_HOME}/WebStorm-193.6494.34"
 export WEBSTORM_LIB="${WEBSTORM_HOME}/bin"
 export WEBSTORM_ARGS="-Xms1024m -Xmx2048m -XX:MaxPermSize=512m"
 alias webstorm='"${WEBSTORM_LIB}"/webstorm.sh;'
@@ -241,7 +240,7 @@ export CONFLUENT_BIN="${CONFLUENT_HOME}/bin"
 # https://kafka.apache.org/
 # https://kafka.apache.org/quickstart
 # https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-18-04
-export KAFKA_HOME="${APPLICATIONS_HOME}/kafka_2.12-2.3.0"
+export KAFKA_HOME="${APPLICATIONS_HOME}/kafka_2.12-2.5.0"
 export KAFKA_BIN="${KAFKA_HOME}/bin"
 export KAFKA_CONFIG="${KAFKA_HOME}/config"
 
@@ -265,6 +264,11 @@ alias kafka-status='sudo systemctl status kafka'
 alias kafka-enable='sudo systemctl enable kafka'
 alias kafka-disable='sudo systemctl disable kafka'
 
+# kafka yahoo CMAK (Cluster Manager for Kafka)
+# https://github.com/yahoo/CMAK
+export KAFKA_CMAK_HOME="${APPLICATIONS_HOME}/cmak-3.0.0.5"
+export KAFKA_CMAK_BIN="${KAFKA_CMAK_HOME}/bin"
+
 # kafka ui console
 # Kafka Tool 2.0.4 --> kafkatool.sh
 # http://www.kafkatool.com/download.html
@@ -283,7 +287,7 @@ export ZOOKEEPER_BIN="${ZOOKEEPER_HOME}/bin"
 # ubuntu redis install
 # https://redis.io/
 # https://redis.io/download (follow the instructions to build using `make`)
-export REDIS_HOME="${APPLICATIONS_HOME}/redis-5.0.5"
+export REDIS_HOME="${APPLICATIONS_HOME}/redis-6.0.6"
 export REDIS_BIN="${REDIS_HOME}/src"
 
 alias redis-server='cd ${REDIS_BIN}; ./redis-server'
@@ -414,6 +418,7 @@ PATH="${KIBANA_BIN}:$PATH"
 PATH="${LOGSTASH_BIN}:$PATH"
 PATH="${KAFKA_TOOL_BIN}:$PATH"
 PATH="${CONFLUENT_BIN}:$PATH"
+PATH="${KAFKA_CMAK_BIN}:$PATH"
 
 export PATH
 
