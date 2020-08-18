@@ -83,6 +83,9 @@ $HOME/jdk14.sh
 $HOME/Documents/_applications/cmak-3.0.0.5/bin/cmak -Dconfig.file=$HOME/Documents/_applications/cmak-3.0.0.5/conf/application.conf -Dcmak.zkhosts="localhost:2181"
 ```
 
+## [Trifecta CLI](http://ldaniels528.github.io/trifecta/)
+  - [Trifecta CLI tool that enables users to quickly and easily inspect, publish and verify messages in Kafka, Storm and Zookeeper](https://github.com/ldaniels528/trifecta/)
+
 ## Kafka UI Tools
   - [Kafka Tool](http://www.kafkatool.com/download.html)
 

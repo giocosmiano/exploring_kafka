@@ -264,13 +264,16 @@ alias kafka-status='sudo systemctl status kafka'
 alias kafka-enable='sudo systemctl enable kafka'
 alias kafka-disable='sudo systemctl disable kafka'
 
+# kafka trifecta UI
+# http://ldaniels528.github.io/trifecta/
+alias trifecta-start="java -jar "$APPLICATIONS_HOME/trifecta-bundle-0.18.13.bin.jar" --http-start"
+
 # kafka yahoo CMAK (Cluster Manager for Kafka)
 # https://github.com/yahoo/CMAK
 export KAFKA_CMAK_HOME="${APPLICATIONS_HOME}/cmak-3.0.0.5"
 export KAFKA_CMAK_BIN="${KAFKA_CMAK_HOME}/bin"
 
 # kafka ui console
-# Kafka Tool 2.0.4 --> kafkatool.sh
 # http://www.kafkatool.com/download.html
 export KAFKA_TOOL_HOME="${APPLICATIONS_HOME}/kafkatool2"
 export KAFKA_TOOL_BIN="${KAFKA_TOOL_HOME}"
