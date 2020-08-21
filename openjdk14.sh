@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # https://askubuntu.com/questions/740757/switch-between-multiple-java-versions
 # https://stackoverflow.com/questions/49507160/how-to-install-jdk-10-under-ubuntu
 # https://askubuntu.com/questions/534658/undo-update-alternatives

@@ -4,8 +4,6 @@
 # https://stackoverflow.com/questions/8352851/how-to-call-one-shell-script-from-another-shell-script
 # https://www.codegrepper.com/code-examples/shell/script+inside+script+shell
 
-# http://ldaniels528.github.io/trifecta/
-# https://github.com/ldaniels528/trifecta/
-bash "$HOME/jdk8.sh"
-java -jar "$HOME/Documents/_applications/trifecta-bundle-0.18.13.bin.jar" --http-start
+bash "$HOME/cmak.sh"
+bash "$HOME/trifecta_kafka.sh"
 
