@@ -66,6 +66,7 @@
   - [Setting up Kafka management for kafka cluster](https://codeforgeek.com/setting-up-kafka-management-for-kafka-cluster/)
   - [kafka-manager-docker](https://github.com/hleb-albau/kafka-manager-docker)
   - [How to install Kafka Manager for Managing kafka cluster](http://manastri.blogspot.com/2020/03/how-to-install-kafka-manager-for.html)
+  - [CMAK `localhost`](http://localhost:9000/)
 
   - change the following in conf/application.conf
 ```
@@ -85,6 +86,7 @@ $HOME/Documents/_applications/cmak-3.0.0.5/bin/cmak -Dconfig.file=$HOME/Document
 
 ## [Trifecta CLI](http://ldaniels528.github.io/trifecta/)
   - [Trifecta CLI tool that enables users to quickly and easily inspect, publish and verify messages in Kafka, Storm and Zookeeper](https://github.com/ldaniels528/trifecta/)
+  - [Trifecta `localhost`](http://localhost:8888/)
 
 ## Kafka UI Tools
   - [Kafka Tool](http://www.kafkatool.com/download.html)
