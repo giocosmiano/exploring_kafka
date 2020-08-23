@@ -255,7 +255,7 @@ alias zooKeeperStart='cd ${KAFKA_HOME}; bin/zookeeper-server-start.sh config/zoo
 alias zooKeeperStop='cd ${KAFKA_HOME}; bin/zookeeper-server-stop.sh config/zookeeper.properties'
 
 alias kafkaStart='cd ${KAFKA_HOME}; bin/kafka-server-start.sh config/server.properties'
-alias kafkaStopS='cd ${KAFKA_HOME}; bin/kafka-server-stop.sh config/server.properties'
+alias kafkaStop='cd ${KAFKA_HOME}; bin/kafka-server-stop.sh config/server.properties'
 
 # Configure to start automatically with the server
 # cp kafka.service to /etc/systemd/system
