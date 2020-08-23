@@ -454,9 +454,16 @@ export SDKMAN_DIR="/home/gio/.sdkman"
 # How to connect Kafka to MongoDB Source - https://medium.com/tech-that-works/cloud-kafka-connector-for-mongodb-source-8b525b779772
 # Setting MongoDB Replica Set - https://www.youtube.com/watch?v=I6J9M0J66jo
 # MongoDB Kafka Connect Tutorial | Apache Kafka - https://www.youtube.com/watch?v=AF9WyW4npwY
-export CLASSPATH="$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mongodb/*"
-export CONFLUENT_CONNECT_CLASSPATH="$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/confluentinc-kafka-connect-elasticsearch/*
-$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mongodb/*
-$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mysql/*
-$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/jcustenborder-kafka-connect-redis/*
-$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/mongodb-kafka-connect-mongodb/*"
+# NOT needed if `plugins` path is setup correctly. See readme.md on Setting up Confluent Kafka Connect Plugins such as Kafka Connector MongoDB Source
+#    - $CONFLUENT_HOME/etc/kafka/connect-distributed.properties
+#    - $CONFLUENT_HOME/etc/kafka/connect-standalone.properties
+#    - $CONFLUENT_HOME/etc/schema-registry/connect-avro-distributed.properties
+#    - $CONFLUENT_HOME/etc/schema-registry/connect-avro-standalone.properties
+# e.g.
+# plugin.path=$HOME/Documents/_applications/confluent-5.5.1/share/java,$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components,$HOME/Documents/_applications/confluent-5.5.1/plugins
+# export CLASSPATH="$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mongodb/*"
+# export CONFLUENT_CONNECT_CLASSPATH="$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/confluentinc-kafka-connect-elasticsearch/*
+# $HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mongodb/*
+# $HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mysql/*
+# $HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/jcustenborder-kafka-connect-redis/*
+# $HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/mongodb-kafka-connect-mongodb/*"
