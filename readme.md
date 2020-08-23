@@ -264,7 +264,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
 ```properties
 plugin.path=$HOME/Documents/_applications/confluent-5.5.1/share/java,$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components,$HOME/Documents/_applications/confluent-5.5.1/plugins
 ```
-  - If the above `plugins` .jar files didn't work OR didn't get added to classpath then manually add the `$CLASSPATH` to `.bashrc` e.g.
+  - The above `plugins` .jar files should work but in case it didn't get added to classpath then manually add the `$CLASSPATH` to `.bashrc` e.g.
 ```bash
    export CLASSPATH="$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mongodb/*"
 ```
