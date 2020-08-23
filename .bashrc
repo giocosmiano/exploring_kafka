@@ -215,16 +215,6 @@ export KIBANA_BIN="${KIBANA_HOME}/bin"
 export LOGSTASH_HOME="${APPLICATIONS_HOME}/logstash-6.4.3"
 export LOGSTASH_BIN="${LOGSTASH_HOME}/bin"
 
-# Configure to start automatically with the server
-# cp kafka.service to /etc/systemd/system
-# cp zookeeper.service to /etc/systemd/system
-alias docker-restart='sudo systemctl restart docker'
-alias docker-start='sudo systemctl start docker'
-alias docker-stop='sudo systemctl stop docker'
-alias docker-status='sudo systemctl status docker'
-alias docker-enable='sudo systemctl enable docker'
-alias docker-disable='sudo systemctl disable docker'
-
 # Confluent Kafka
 # https://www.confluent.io/download/#
 # https://docs.confluent.io/current/
@@ -234,6 +224,23 @@ alias docker-disable='sudo systemctl disable docker'
 # https://docs.confluent.io/current/cli/command-reference/confluent-local/confluent_local_start.html
 export CONFLUENT_HOME="${APPLICATIONS_HOME}/confluent-5.5.1"
 export CONFLUENT_BIN="${CONFLUENT_HOME}/bin"
+alias confluentLocalStart='confluent local start'
+alias confluentLocalStop='confluent local stop'
+alias confluentLocalDestroy='confluent local destroy'
+alias confluentKafkaStart='cd ${CONFLUENT_HOME}; bin/kafka-server-start etc/kafka/server.properties'
+alias confluentKafkaStop='cd ${CONFLUENT_HOME}; bin/kafka-server-stop etc/kafka/server.properties'
+alias confluentZookeeperStart='cd ${CONFLUENT_HOME}; bin/zookeeper-server-start etc/kafka/zookeeper.properties'
+alias confluentZookeeperStop='cd ${CONFLUENT_HOME}; bin/zookeeper-server-stop etc/kafka/zookeeper.properties'
+alias confluentSchemaStart='cd ${CONFLUENT_HOME}; bin/schema-registry-start etc/schema-registry/schema-registry.properties'
+alias confluentSchemaStop='cd ${CONFLUENT_HOME}; bin/schema-registry-stop etc/schema-registry/schema-registry.properties'
+alias confluentSchemaMongoStart='cd ${CONFLUENT_HOME}; bin/schema-registry-start etc/schema-registry/connect-avro-distributed.properties etc/kafka/connect-mongo-source.properties'
+alias confluentSchemaMongoStop='cd ${CONFLUENT_HOME}; bin/schema-registry-stop etc/schema-registry/connect-avro-distributed.properties etc/kafka/connect-mongo-source.properties'
+alias confluentKSqlStart='cd ${CONFLUENT_HOME}; bin/ksql-server-start etc/ksqldb/ksql-server.properties'
+alias confluentKSqlStop='cd ${CONFLUENT_HOME}; bin/ksql-server-stop etc/ksqldb/ksql-server.properties'
+alias confluentRestStart='cd ${CONFLUENT_HOME}; bin/kafka-rest-start etc/kafka-rest/kafka-rest.properties'
+alias confluentRestStop='cd ${CONFLUENT_HOME}; bin/kafka-rest-stop etc/kafka-rest/kafka-rest.properties'
+alias confluentConnectStart='cd ${CONFLUENT_HOME}; bin/connect-distributed etc/kafka/connect-distributed.properties'
+alias confluentConnectSAStart='cd ${CONFLUENT_HOME}; bin/connect-standalone etc/kafka/connect-standalone.properties'
 
 # Kafka
 # ubuntu kafka install
@@ -257,21 +264,22 @@ alias kafkaStop='kafkaStopKafka; zkServer.sh stop;'
 # Configure to start automatically with the server
 # cp kafka.service to /etc/systemd/system
 # cp zookeeper.service to /etc/systemd/system
-alias kafka-restart='sudo systemctl restart kafka'
-alias kafka-start='sudo systemctl start kafka'
-alias kafka-stop='sudo systemctl stop kafka'
-alias kafka-status='sudo systemctl status kafka'
-alias kafka-enable='sudo systemctl enable kafka'
-alias kafka-disable='sudo systemctl disable kafka'
+alias kafka-restart='sudo systemctl restart zookeeper.service kafka.service'
+alias kafka-start='sudo systemctl start zookeeper.service kafka.service'
+alias kafka-stop='sudo systemctl stop zookeeper.service kafka.service'
+alias kafka-status='sudo systemctl status zookeeper.service kafka.service'
+alias kafka-enable='sudo systemctl enable zookeeper.service kafka.service'
+alias kafka-disable='sudo systemctl disable zookeeper.service kafka.service'
 
 # kafka trifecta UI
 # http://ldaniels528.github.io/trifecta/
-alias trifecta-start="java -jar "$APPLICATIONS_HOME/trifecta-bundle-0.18.13.bin.jar" --http-start"
+alias trifectaStart="java -jar "$APPLICATIONS_HOME/trifecta-bundle-0.18.13.bin.jar" --http-start"
 
 # kafka yahoo CMAK (Cluster Manager for Kafka)
 # https://github.com/yahoo/CMAK
 export KAFKA_CMAK_HOME="${APPLICATIONS_HOME}/cmak-3.0.0.5"
 export KAFKA_CMAK_BIN="${KAFKA_CMAK_HOME}/bin"
+alias cmakStart="$HOME/cmak.sh"
 
 # kafka ui console
 # http://www.kafkatool.com/download.html
@@ -331,12 +339,12 @@ export MONGODB_BIN="${MONGODB_HOME}/bin"
 
 # Configure to start automatically with the server
 # cp mongo.service to /etc/systemd/system
-alias mongodb-restart='sudo systemctl restart mongod'
-alias mongodb-start='sudo systemctl start mongod'
-alias mongodb-stop='sudo systemctl stop mongod'
-alias mongodb-status='sudo systemctl status mongod'
-alias mongodb-enable='sudo systemctl enable mongod'
-alias mongodb-disable='sudo systemctl disable mongod'
+alias mongodb-restart='sudo systemctl restart replicated_mongodb1.service replicated_mongodb2.service replicated_mongodb3.service'
+alias mongodb-start='sudo systemctl start replicated_mongodb1.service replicated_mongodb2.service replicated_mongodb3.service'
+alias mongodb-stop='sudo systemctl stop replicated_mongodb1.service replicated_mongodb2.service replicated_mongodb3.service'
+alias mongodb-status='sudo systemctl status replicated_mongodb1.service replicated_mongodb2.service replicated_mongodb3.service'
+alias mongodb-enable='sudo systemctl enable replicated_mongodb1.service replicated_mongodb2.service replicated_mongodb3.service'
+alias mongodb-disable='sudo systemctl disable replicated_mongodb1.service replicated_mongodb2.service replicated_mongodb3.service'
 
 # GCosmiano Original mongod commands - 2020-07-25
 # Configure to start automatically with the server
@@ -426,9 +434,8 @@ PATH="${KAFKA_CMAK_BIN}:$PATH"
 export PATH
 
 alias jdk8='cd ~; . jdk8.sh'
-alias jdk12='cd ~; . jdk12.sh'
 alias jdk14='cd ~; . jdk14.sh'
-alias openjdk12='cd ~; . openjdk12.sh'
+alias openjdk8='cd ~; . openjdk8.sh'
 alias openjdk14='cd ~; . openjdk14.sh'
 
 export NVM_DIR="$HOME/.nvm"
@@ -442,3 +449,14 @@ export NVM_DIR="$HOME/.nvm"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/gio/.sdkman"
 [[ -s "/home/gio/.sdkman/bin/sdkman-init.sh" ]] && source "/home/gio/.sdkman/bin/sdkman-init.sh"
+
+# Confluent Kafka Connect Mongo Source
+# How to connect Kafka to MongoDB Source - https://medium.com/tech-that-works/cloud-kafka-connector-for-mongodb-source-8b525b779772
+# Setting MongoDB Replica Set - https://www.youtube.com/watch?v=I6J9M0J66jo
+# MongoDB Kafka Connect Tutorial | Apache Kafka - https://www.youtube.com/watch?v=AF9WyW4npwY
+export CLASSPATH="$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mongodb/*"
+export CONFLUENT_CONNECT_CLASSPATH="$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/confluentinc-kafka-connect-elasticsearch/*
+$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mongodb/*
+$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mysql/*
+$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/jcustenborder-kafka-connect-redis/*
+$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/mongodb-kafka-connect-mongodb/*"

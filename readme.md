@@ -214,6 +214,24 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
 /tmp/confluent.0YtCGnLS/
 ```
 
+## Connecting Kafka to MongoDB Source
+  - [How to connect Kafka to MongoDB Source](https://medium.com/tech-that-works/cloud-kafka-connector-for-mongodb-source-8b525b779772)
+    - [Setting MongoDB Replica Set](https://www.youtube.com/watch?v=I6J9M0J66jo)
+    - [MongoDB Kafka Connect Tutorial | Apache Kafka](https://www.youtube.com/watch?v=AF9WyW4npwY)
+  - [Topic name must be in the form `logicalName.databaseName.collectionName`](https://debezium.io/documentation/reference/1.2/connectors/mongodb.html#mongodb-topic-names)
+    - [Kafka Debezium Connector for MongoDB](https://debezium.io/documentation/reference/1.2/connectors/mongodb.html)
+    - So in essence, create the topic name with `mongoConn.sampleGioDB.books`
+      - mongodb.name = mongoConn (see connect-mongodb-source.properties)
+      - db name is `sampleGioDB` (in Mongo)
+      - collection name is `books` (in Mongo)
+```bash
+  $ kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mongoConn.sampleGioDB.books
+  $ kafka-topics --list --zookeeper localhost:2181
+  $ cd $CONFLUENT_HOME
+  $ bin/connect-standalone etc/schema-registry/connect-avro-standalone.properties etc/kafka/connect-mongodb-source.properties
+  $ kafka-console-consumer --bootstrap-server localhost:9092 --topic mongoConn.sampleGioDB.books  --from-beginning
+```
+
 ## Kafka Blogs
   - [Kafka Architecture](https://dzone.com/articles/kafka-architecture)
   - [4 Key Benefits of Apache Kafka for Real-Time Data](https://business-staging.udemy.com/blog/4-key-benefits-of-apache-kafka-for-real-time-data/)
