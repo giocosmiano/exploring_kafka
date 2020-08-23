@@ -251,15 +251,11 @@ export KAFKA_HOME="${APPLICATIONS_HOME}/kafka_2.12-2.5.0"
 export KAFKA_BIN="${KAFKA_HOME}/bin"
 export KAFKA_CONFIG="${KAFKA_HOME}/config"
 
-alias kafkaStartZKeeper='cd ${KAFKA_HOME}; bin/zookeeper-server-start.sh config/zookeeper.properties'
-alias kafkaStopZKeeper='cd ${KAFKA_HOME}; bin/zookeeper-server-stop.sh config/zookeeper.properties'
+alias zooKeeperStart='cd ${KAFKA_HOME}; bin/zookeeper-server-start.sh config/zookeeper.properties'
+alias zooKeeperStop='cd ${KAFKA_HOME}; bin/zookeeper-server-stop.sh config/zookeeper.properties'
 
-alias kafkaStartServer='cd ${KAFKA_HOME}; bin/kafka-server-start.sh config/server.properties'
-alias kafkaStopServer='cd ${KAFKA_HOME}; bin/kafka-server-stop.sh config/server.properties'
-
-alias kafkaStartOLD='kafkaStartZKeeper; kafkaStartServer;'
-alias kafkaStart='zkServer.sh start; kafkaStartServer;'
-alias kafkaStop='kafkaStopKafka; zkServer.sh stop;'
+alias kafkaStart='cd ${KAFKA_HOME}; bin/kafka-server-start.sh config/server.properties'
+alias kafkaStopS='cd ${KAFKA_HOME}; bin/kafka-server-stop.sh config/server.properties'
 
 # Configure to start automatically with the server
 # cp kafka.service to /etc/systemd/system
