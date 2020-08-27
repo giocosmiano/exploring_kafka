@@ -66,10 +66,14 @@
   - [Setting up Kafka management for kafka cluster](https://codeforgeek.com/setting-up-kafka-management-for-kafka-cluster/)
   - [kafka-manager-docker](https://github.com/hleb-albau/kafka-manager-docker)
   - [How to install Kafka Manager for Managing kafka cluster](http://manastri.blogspot.com/2020/03/how-to-install-kafka-manager-for.html)
-  - [CMAK `localhost`](http://localhost:9000/)
+  - [CMAK `http://localhost:9990`, instead of default port 9000](http://localhost:9990/)
+```shell script
+  $ $HOME/jdk14.sh
+  $ $HOME/Documents/_applications/cmak-3.0.0.5/bin/cmak -Dhttp.port=9990 -Dconfig.file=$HOME/Documents/_applications/cmak-3.0.0.5/conf/application.conf -Dcmak.zkhosts="localhost:2181"
+```
 
   - change the following in conf/application.conf
-```
+```properties
 kafka-manager.zkhosts="localhost:2181"
 basicAuthentication.username="admin"
 basicAuthentication.password="password"
@@ -79,14 +83,13 @@ basicAuthentication.password="password"
 :2181,:2181,:2181
 ```
 
-```shell script
-$HOME/jdk14.sh
-$HOME/Documents/_applications/cmak-3.0.0.5/bin/cmak -Dconfig.file=$HOME/Documents/_applications/cmak-3.0.0.5/conf/application.conf -Dcmak.zkhosts="localhost:2181"
-```
-
 ## [Trifecta CLI](http://ldaniels528.github.io/trifecta/)
   - [Trifecta CLI tool that enables users to quickly and easily inspect, publish and verify messages in Kafka, Storm and Zookeeper](https://github.com/ldaniels528/trifecta/)
-  - [Trifecta `localhost`](http://localhost:8888/)
+  - [Trifecta `http://localhost:9980`, instead of default port 8888](http://localhost:9980/)
+```shell script
+  $ . "$HOME/jdk8.sh"
+  $ java -jar "$HOME/Documents/_applications/trifecta-bundle-0.18.13.bin.jar" --http-start -Dtrifecta.web.port=9980
+```
 
 ## Kafka UI Tools
   - [Kafka Tool](http://www.kafkatool.com/download.html)
@@ -100,93 +103,124 @@ $HOME/Documents/_applications/cmak-3.0.0.5/bin/cmak -Dconfig.file=$HOME/Document
     - [KafDrop in local Docker instance](http://localhost:9000/)
     
 ```shell script
-docker run -d --rm -p 9000:9000 \
-    -e KAFKA_BROKERCONNECT=localhost:9092 \
-    -e JVM_OPTS="-Xms32M -Xmx64M" \
-    -e SERVER_SERVLET_CONTEXTPATH="/" \
-    obsidiandynamics/kafdrop:latest
+  $ docker run -d --rm -p 9000:9000 \
+      -e KAFKA_BROKERCONNECT=localhost:9092 \
+      -e JVM_OPTS="-Xms32M -Xmx64M" \
+      -e SERVER_SERVLET_CONTEXTPATH="/" \
+      obsidiandynamics/kafdrop:latest
 ```
 
 ## [lensesIO - fast-data-dev](https://github.com/lensesio)
   - [fast-data-dev](https://github.com/lensesio/fast-data-dev)
-  - [Docker Hub](https://hub.docker.com/r/landoop/fast-data-dev)
-    
+  - [Docker Hub](https://hub.docker.com/r/landoop/fast-data-dev) - This includes `zookeeper` and `kafka`
+  - [LensesIO Kafka Development Environment `http://localhost:3030`](http://localhost:3030/)
+  - ***OR Run individual docker images (see next sections)***
+    - [`schema-registry-ui` in `http://localhost:8710`](http://localhost:8710)
+    - [`kafka-topics-ui` in `http://localhost:8720`](http://localhost:8720)
+    - [`kafka-connect-ui` in `http://localhost:8730`](http://localhost:8730)
 ```shell script
-    docker pull landoop/fast-data-dev
-    docker run --rm --net=host lensesio/fast-data-dev
-```
-
-## [lensesIO - kafka-topics-ui](https://github.com/lensesio)
-  - [kafka-topics-ui](https://github.com/lensesio/kafka-topics-ui)
-  - [Docker Hub](https://hub.docker.com/r/landoop/kafka-topics-ui)
-    
-```shell script
-    docker pull landoop/kafka-topics-ui
-    docker run --rm -it -p 8000:8000 \
-               -e "KAFKA_REST_PROXY_URL=https://kafka-rest-proxy-host:port" \
-               -e "PROXY=true" \
-               landoop/kafka-topics-ui
+  $ docker pull landoop/fast-data-dev
+  $ docker run --rm --net=host lensesio/fast-data-dev
 ```
 
 ## [lensesIO - schema-registry-ui](https://github.com/lensesio)
   - [schema-registry-ui](https://github.com/lensesio/schema-registry-ui)
   - [Docker Hub](https://hub.docker.com/r/landoop/schema-registry-ui)
-    
+  - Running the docker image with overridden port 8710 e.g. [`http://localhost:8710`](http://localhost:8710)
+    - See [Docker run publish or expose port](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port--p---expose)
+  - [Resolving lensesIO `schema-registry-ui` common issues](https://github.com/lensesio/schema-registry-ui#prerequisites)
+    - [lensesIO `schema-registry-ui`](https://github.com/lensesio/schema-registry-ui)
+    - [Confluent Schema Registry Configuration Options](https://docs.confluent.io/current/schema-registry/installation/config.html)
 ```shell script
-    docker pull landoop/schema-registry-ui
-    docker run --rm -p 8000:8000 \
-               -e "SCHEMAREGISTRY_URL=http://confluent-schema-registry-host:port" \
-               landoop/schema-registry-ui
+  alias confluentZookeeperStart='cd ${CONFLUENT_HOME}; bin/zookeeper-server-start etc/kafka/zookeeper.properties'
+  alias confluentKafkaStart='cd ${CONFLUENT_HOME}; bin/kafka-server-start etc/kafka/server.properties'
+  alias confluentSchemaStart='cd ${CONFLUENT_HOME}; bin/schema-registry-start etc/schema-registry/schema-registry.properties'
+```
+```shell script
+  $ confluentZookeeperStart
+  $ confluentKafkaStart
+  $ confluentSchemaStart
+  $ docker pull landoop/schema-registry-ui
+  $ docker run --rm -it -p 127.0.0.1:8710:8000 -e "SCHEMAREGISTRY_URL=http://localhost:8081" landoop/schema-registry-ui
+```
+
+## [lensesIO - kafka-topics-ui](https://github.com/lensesio)
+  - [kafka-topics-ui](https://github.com/lensesio/kafka-topics-ui)
+  - [Docker Hub](https://hub.docker.com/r/landoop/kafka-topics-ui)
+  - Running the docker image with overridden port 8720 e.g. [`http://localhost:8720`](http://localhost:8720)
+    - See [Docker run publish or expose port](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port--p---expose)
+  - [Resolving lensesIO `kafka-topics-ui` common issues](https://github.com/lensesio/kafka-topics-ui#common-issues)
+    - [lensesIO `kafka-topics-ui`](https://github.com/lensesio/kafka-topics-ui)
+    - [Confluent ReST Proxy Configuration Options](https://docs.confluent.io/current/kafka-rest/config.html)
+```shell script
+  alias confluentZookeeperStart='cd ${CONFLUENT_HOME}; bin/zookeeper-server-start etc/kafka/zookeeper.properties'
+  alias confluentKafkaStart='cd ${CONFLUENT_HOME}; bin/kafka-server-start etc/kafka/server.properties'
+  alias confluentRestStart='cd ${CONFLUENT_HOME}; bin/kafka-rest-start etc/kafka-rest/kafka-rest.properties'
+```
+```shell script
+  $ confluentZookeeperStart
+  $ confluentKafkaStart
+  $ confluentRestStart
+  $ docker pull landoop/kafka-topics-ui
+  $ docker run --rm -it -p 127.0.0.1:8720:8000 -e "KAFKA_REST_PROXY_URL=http://localhost:8082" -e "PROXY=false" landoop/kafka-topics-ui
 ```
 
 ## [lensesIO - kafka-connect-ui](https://github.com/lensesio)
   - [kafka-connect-ui](https://github.com/lensesio/kafka-connect-ui)
   - [Docker Hub](https://hub.docker.com/r/landoop/kafka-connect-ui)
-    
+  - Running the docker image with overridden port 8730 e.g. [`http://localhost:8730`](http://localhost:8730)
+    - See [Docker run publish or expose port](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port--p---expose)
+  - [Resolving lensesIO `kafka-connect-ui` common issues](https://docs.confluent.io/current/kafka-rest/config.html)
+    - [lensesIO `kafka-connect-ui`](https://github.com/lensesio/kafka-connect-ui)
+    - [Confluent Connect Configuration Options](https://docs.confluent.io/current/connect/userguide.html)
 ```shell script
-    docker pull landoop/kafka-connect-ui
-    docker run --rm -it -p 8000:8000 \
-               -e "CONNECT_URL=http://connect.distributed.url" \
-               landoop/kafka-connect-ui
+  alias confluentKafkaStart='cd ${CONFLUENT_HOME}; bin/kafka-server-start etc/kafka/server.properties'
+  alias confluentZookeeperStart='cd ${CONFLUENT_HOME}; bin/zookeeper-server-start etc/kafka/zookeeper.properties'
+  alias confluentConnectStart='cd ${CONFLUENT_HOME}; bin/connect-distributed etc/kafka/connect-distributed.properties'
+```
+```shell script
+  $ confluentZookeeperStart
+  $ confluentKafkaStart
+  $ confluentConnectStart
+  $ docker pull landoop/kafka-connect-ui
+  $ docker run --rm -it -p 127.0.0.1:8730:8000 -e "CONNECT_URL=http://localhost:8083" -e "PROXY=false" landoop/kafka-connect-ui
 ```
 
 ## Kafka sample commands
 ```shell script
-# create input/output topics
-bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic sample-input-topic
+# create topics
+  $ kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic sample-input-topic
+  $ kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic sample-output-topic
 
-bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic sample-output-topic
-
-# check/describe the topics created
-bin/kafka-topics.sh --list --zookeeper localhost:2181 --topic sample-input-topic
-
-bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic sample-input-topic
-
-bin/kafka-topics.sh --delete --zookeeper localhost:2181 --topic sample-input-topic
+# check/describe/delete topics
+  $ kafka-topics.sh --list --zookeeper localhost:2181
+  $ kafka-topics.sh --list --zookeeper localhost:2181 --topic sample-input-topic
+  $ kafka-topics.sh --describe --zookeeper localhost:2181 --topic sample-input-topic
+  $ kafka-topics.sh --delete --zookeeper localhost:2181 --topic sample-input-topic
 
 # start kafka producer to manually enter some data
-bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sample-input-topic
+  $ kafka-console-producer.sh --broker-list localhost:9092 --topic sample-input-topic
 
 # enter
-kafka hello world
-kafka sample data processing
-kafka the quick brown fox jumps over the lazy dog
+  > kafka hello world
+  > kafka sample data processing
+  > kafka the quick brown fox jumps over the lazy dog
 # exit
 
 # start kafka producer to pipe in some file
-bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sample-input-topic < sampleTextFile.txt
+  $ kafka-console-producer.sh --broker-list localhost:9092 --topic sample-input-topic < sampleTextFile.txt
 
 # start kafka consumer
-bin/kafka-console-consumer.sh --topic sample-input-topic --bootstrap-server localhost:9092 --from-beginning
+  $ kafka-console-consumer.sh --topic sample-input-topic --bootstrap-server localhost:9092 --from-beginning
 
-bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
-    --topic sample-input-topic \
-    --from-beginning \
-    --formatter kafka.tools.DefaultMessageFormatter \
-    --property print.key=true \
-    --property print.value=true \
-    --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer \
-    --property value.deserializer=org.apache.kafka.common.serialization.IntegerDeserializer
+  $ kafka-console-consumer.sh -bootstrap-server localhost:9092 \
+      --topic sample-input-topic \
+      --from-beginning \
+      --formatter kafka.tools.DefaultMessageFormatter \
+      --property print.key=true \
+      --property print.value=true \
+      --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer \
+      --property value.deserializer=org.apache.kafka.common.serialization.IntegerDeserializer
 ```
 
 ## [Confluent Platform](https://www.confluent.io/)
@@ -198,7 +232,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
   - [Quick Start for Apache Kafka using Confluent Platform (Local)](https://docs.confluent.io/current/quickstart/ce-quickstart.html#quick-start-for-apache-kafka-using-cp-local)
   - [CLI Command Reference](https://docs.confluent.io/current/cli/command-reference/index.html#cli-command-reference)
   - [Confluent `local` commands for single node instance locally](https://docs.confluent.io/current/cli/command-reference/confluent-local/index.html#confluent-local)
-  - [Confluent `localhost` Control Center](http://localhost:9021/clusters)
+  - [Confluent `http://localhost:9021` Control Center](http://localhost:9021/clusters)
   
 ## [Confluent Connectors](https://www.confluent.io/hub/)
   - [MongoDB](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
@@ -224,7 +258,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
       - mongodb.name = mongoConn (see connect-mongodb-source.properties)
       - db name is `sampleGioDB` (in Mongo)
       - collection name is `books` (in Mongo)
-```bash
+```shell script
   $ kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mongoConn.sampleGioDB.books
   $ kafka-topics --list --zookeeper localhost:2181
   $ cd $CONFLUENT_HOME
@@ -237,7 +271,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
   - [Kafka connect plugin install](https://gquintana.github.io/2019/12/10/Kafka-connect-plugin-install.html)
   - [How to install connector plugins in Kafka Connect](https://rmoff.net/2020/06/19/how-to-install-connector-plugins-in-kafka-connect/)
   - Install the needed Kafka Connectors from [Confluent Kafka Connectors Hub](https://www.confluent.io/hub/). e.g.
-```bash
+```shell script
    $ confluent-hub install confluentinc/kafka-connect-elasticsearch:5.5.1
    $ confluent-hub install debezium/debezium-connector-mongodb:1.2.1
    $ confluent-hub install debezium/debezium-connector-mysql:1.2.1
@@ -246,7 +280,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
    $ confluent-hub install hpgrahsl/kafka-connect-mongodb:1.4.0
 ```  
   - Create `plugins` directory under `$CONFLUENT_HOME`, then create `symlink` from `lib` directory where the `.jar` files are
-```bash
+```shell script
    $ cd $CONFLUENT_HOME
    $ mkdir plugins
    $ cd plugins
@@ -265,7 +299,7 @@ bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 \
 plugin.path=$HOME/Documents/_applications/confluent-5.5.1/share/java,$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components,$HOME/Documents/_applications/confluent-5.5.1/plugins
 ```
   - The above `plugins` .jar files should work but in case it didn't get added to classpath then manually add the `$CLASSPATH` to `.bashrc` e.g.
-```bash
+```shell script
    export CLASSPATH="$HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mongodb/*"
 ```
 
@@ -276,7 +310,7 @@ plugin.path=$HOME/Documents/_applications/confluent-5.5.1/share/java,$HOME/Docum
       - [KSql Create Stream](https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/create-stream/)
       - [KSql Print Kafka Topic's Content](https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/print/)
       - alias confluentKSqlStart='cd ${CONFLUENT_HOME}; bin/ksql-server-start etc/ksqldb/ksql-server.properties'
-```bash
+```shell script
    $ trifectaStart
    $ confluentKSqlStart
    $ ksql
@@ -320,28 +354,28 @@ plugin.path=$HOME/Documents/_applications/confluent-5.5.1/share/java,$HOME/Docum
   - [Starting the ksqlDB Server](https://docs.confluent.io/current/ksqldb/installing.html#start-ksql-server)
 
 ```shell script
-$ confluent local list
-
-$ confluent local start # to start `all` services
-
-$ confluent local start ksql-server # to start `ksql-server` service only
+  $ confluent local list
+  $ confluent local start # to start `all` services
+  $ confluent local start ksql-server # to start `ksql-server` service only
 ```
 OR
 ```shell script
-$ bin/ksql-server-start etc/ksqldb/ksql-server.properties
-
-$ ksql
+  alias confluentZookeeperStart='cd ${CONFLUENT_HOME}; bin/zookeeper-server-start etc/kafka/zookeeper.properties'
+  alias confluentKafkaStart='cd ${CONFLUENT_HOME}; bin/kafka-server-start etc/kafka/server.properties'
+  alias confluentKSqlStart='cd ${CONFLUENT_HOME}; bin/ksql-server-start etc/ksqldb/ksql-server.properties'
+```
+```shell script
+  $ confluentKSqlStart
+  $ ksql
 ```
 
 ## [Confluent Connect](https://docs.confluent.io/current/connect/userguide.html#connect-userguide)
   - [Moving Data In and Out of Kafka](https://docs.confluent.io/current/connect/quickstart.html)
   - [From Zero to Hero with Kafka Connect](https://www.youtube.com/watch?v=Jkcp28ki82k)
 ```shell script
-$ confluent local list
-
-$ confluent local start # to start `all` services
-
-$ confluent local start connect # to start `connect` service only
+  $ confluent local list
+  $ confluent local start # to start `all` services
+  $ confluent local start connect # to start `connect` service only
 ```
 
 ## [Confluent git repo](https://github.com/confluentinc)
