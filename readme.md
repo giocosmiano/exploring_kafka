@@ -132,16 +132,19 @@ basicAuthentication.password="password"
     - [lensesIO `schema-registry-ui`](https://github.com/lensesio/schema-registry-ui)
     - [Confluent Schema Registry Configuration Options](https://docs.confluent.io/current/schema-registry/installation/config.html)
 ```shell script
+  $ docker pull landoop/schema-registry-ui
+```
+```shell script
   alias confluentZookeeperStart='cd ${CONFLUENT_HOME}; bin/zookeeper-server-start etc/kafka/zookeeper.properties'
   alias confluentKafkaStart='cd ${CONFLUENT_HOME}; bin/kafka-server-start etc/kafka/server.properties'
   alias confluentSchemaStart='cd ${CONFLUENT_HOME}; bin/schema-registry-start etc/schema-registry/schema-registry.properties'
+  alias dockerLensesIOSchemaUI='docker run --rm -it -p 127.0.0.1:8710:8000 -e "SCHEMAREGISTRY_URL=http://localhost:8081" landoop/schema-registry-ui'
 ```
 ```shell script
   $ confluentZookeeperStart
   $ confluentKafkaStart
   $ confluentSchemaStart
-  $ docker pull landoop/schema-registry-ui
-  $ docker run --rm -it -p 127.0.0.1:8710:8000 -e "SCHEMAREGISTRY_URL=http://localhost:8081" landoop/schema-registry-ui
+  $ dockerLensesIOSchemaUI
 ```
 
 ## [lensesIO - kafka-topics-ui](https://github.com/lensesio)
@@ -153,16 +156,19 @@ basicAuthentication.password="password"
     - [lensesIO `kafka-topics-ui`](https://github.com/lensesio/kafka-topics-ui)
     - [Confluent ReST Proxy Configuration Options](https://docs.confluent.io/current/kafka-rest/config.html)
 ```shell script
+  $ docker pull landoop/kafka-topics-ui
+```
+```shell script
   alias confluentZookeeperStart='cd ${CONFLUENT_HOME}; bin/zookeeper-server-start etc/kafka/zookeeper.properties'
   alias confluentKafkaStart='cd ${CONFLUENT_HOME}; bin/kafka-server-start etc/kafka/server.properties'
   alias confluentRestStart='cd ${CONFLUENT_HOME}; bin/kafka-rest-start etc/kafka-rest/kafka-rest.properties'
+  alias dockerLensesIOTopicsUI='docker run --rm -it -p 127.0.0.1:8720:8000 -e "KAFKA_REST_PROXY_URL=http://localhost:8082" -e "PROXY=false" landoop/kafka-topics-ui'
 ```
 ```shell script
   $ confluentZookeeperStart
   $ confluentKafkaStart
   $ confluentRestStart
-  $ docker pull landoop/kafka-topics-ui
-  $ docker run --rm -it -p 127.0.0.1:8720:8000 -e "KAFKA_REST_PROXY_URL=http://localhost:8082" -e "PROXY=false" landoop/kafka-topics-ui
+  $ dockerLensesIOTopicsUI
 ```
 
 ## [lensesIO - kafka-connect-ui](https://github.com/lensesio)
@@ -174,16 +180,19 @@ basicAuthentication.password="password"
     - [lensesIO `kafka-connect-ui`](https://github.com/lensesio/kafka-connect-ui)
     - [Confluent Connect Configuration Options](https://docs.confluent.io/current/connect/userguide.html)
 ```shell script
+  $ docker pull landoop/kafka-connect-ui
+```
+```shell script
   alias confluentKafkaStart='cd ${CONFLUENT_HOME}; bin/kafka-server-start etc/kafka/server.properties'
   alias confluentZookeeperStart='cd ${CONFLUENT_HOME}; bin/zookeeper-server-start etc/kafka/zookeeper.properties'
   alias confluentConnectStart='cd ${CONFLUENT_HOME}; bin/connect-distributed etc/kafka/connect-distributed.properties'
+  alias dockerLensesIOConnectUI='docker run --rm -it -p 127.0.0.1:8730:8000 -e "CONNECT_URL=http://localhost:8083" -e "PROXY=false" landoop/kafka-connect-ui'
 ```
 ```shell script
   $ confluentZookeeperStart
   $ confluentKafkaStart
   $ confluentConnectStart
-  $ docker pull landoop/kafka-connect-ui
-  $ docker run --rm -it -p 127.0.0.1:8730:8000 -e "CONNECT_URL=http://localhost:8083" -e "PROXY=false" landoop/kafka-connect-ui
+  $ dockerLensesIOConnectUI
 ```
 
 ## Kafka sample commands

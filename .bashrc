@@ -242,6 +242,11 @@ alias confluentRestStop='cd ${CONFLUENT_HOME}; bin/kafka-rest-stop etc/kafka-res
 alias confluentConnectStart='cd ${CONFLUENT_HOME}; bin/connect-distributed etc/kafka/connect-distributed.properties'
 alias confluentConnectSAStart='cd ${CONFLUENT_HOME}; bin/connect-standalone etc/kafka/connect-standalone.properties'
 
+alias dockerLensesIOFastDataDev='docker run --rm --net=host lensesio/fast-data-dev'
+alias dockerLensesIOSchemaUI='docker run --rm -it -p 127.0.0.1:8710:8000 -e "SCHEMAREGISTRY_URL=http://localhost:8081" landoop/schema-registry-ui'
+alias dockerLensesIOTopicsUI='docker run --rm -it -p 127.0.0.1:8720:8000 -e "KAFKA_REST_PROXY_URL=http://localhost:8082" -e "PROXY=false" landoop/kafka-topics-ui'
+alias dockerLensesIOConnectUI='docker run --rm -it -p 127.0.0.1:8730:8000 -e "CONNECT_URL=http://localhost:8083" -e "PROXY=false" landoop/kafka-connect-ui'
+
 # Kafka
 # ubuntu kafka install
 # https://kafka.apache.org/
