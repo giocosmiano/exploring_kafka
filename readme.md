@@ -126,7 +126,7 @@ basicAuthentication.password="password"
 ## [lensesIO - schema-registry-ui](https://github.com/lensesio)
   - [schema-registry-ui](https://github.com/lensesio/schema-registry-ui)
   - [Docker Hub](https://hub.docker.com/r/landoop/schema-registry-ui)
-  - Running the docker image with overridden port 8710 e.g. [`http://localhost:8710`](http://localhost:8710)
+  - Running the docker image with overridden port 8710 e.g. [LensesIO schemaRegistryUI in `http://localhost:8710`](http://localhost:8710)
     - See [Docker run publish or expose port](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port--p---expose)
   - [Resolving lensesIO `schema-registry-ui` common issues](https://github.com/lensesio/schema-registry-ui#prerequisites)
     - [lensesIO `schema-registry-ui`](https://github.com/lensesio/schema-registry-ui)
@@ -150,7 +150,7 @@ basicAuthentication.password="password"
 ## [lensesIO - kafka-topics-ui](https://github.com/lensesio)
   - [kafka-topics-ui](https://github.com/lensesio/kafka-topics-ui)
   - [Docker Hub](https://hub.docker.com/r/landoop/kafka-topics-ui)
-  - Running the docker image with overridden port 8720 e.g. [`http://localhost:8720`](http://localhost:8720)
+  - Running the docker image with overridden port 8720 e.g. [LensesIO kafkaTopicsUI in `http://localhost:8720`](http://localhost:8720)
     - See [Docker run publish or expose port](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port--p---expose)
   - [Resolving lensesIO `kafka-topics-ui` common issues](https://github.com/lensesio/kafka-topics-ui#common-issues)
     - [lensesIO `kafka-topics-ui`](https://github.com/lensesio/kafka-topics-ui)
@@ -174,7 +174,7 @@ basicAuthentication.password="password"
 ## [lensesIO - kafka-connect-ui](https://github.com/lensesio)
   - [kafka-connect-ui](https://github.com/lensesio/kafka-connect-ui)
   - [Docker Hub](https://hub.docker.com/r/landoop/kafka-connect-ui)
-  - Running the docker image with overridden port 8730 e.g. [`http://localhost:8730`](http://localhost:8730)
+  - Running the docker image with overridden port 8730 e.g. [LensesIO kafkaConnectUI in `http://localhost:8730`](http://localhost:8730)
     - See [Docker run publish or expose port](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port--p---expose)
   - [Resolving lensesIO `kafka-connect-ui` common issues](https://docs.confluent.io/current/kafka-rest/config.html)
     - [lensesIO `kafka-connect-ui`](https://github.com/lensesio/kafka-connect-ui)
@@ -255,6 +255,18 @@ basicAuthentication.password="password"
 - [Confluent Platform Logs](https://docs.confluent.io/current/cli/command-reference/confluent-local/index.html#confluent-local) are in
 ```shell script
 /tmp/confluent.0YtCGnLS/
+```
+
+## Confluent Control Center and LensesIO UIs
+  - [Control Center `http://localhost:9021`](http://localhost:9021/clusters)
+  - [LensesIO schemaRegistryUI `http://localhost:8710`](http://localhost:8710)
+  - [LensesIO kafkaTopicsUI `http://localhost:8720`](http://localhost:8720)
+  - [LensesIO kafkaConnectUI `http://localhost:8730`](http://localhost:8730)
+```shell script
+  $ confluentControlCenterStart
+  $ dockerLensesIOSchemaUI
+  $ dockerLensesIOTopicsUI
+  $ dockerLensesIOConnectUI
 ```
 
 ## Connecting Kafka to MongoDB Source
