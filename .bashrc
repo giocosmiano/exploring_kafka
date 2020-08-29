@@ -241,8 +241,8 @@ alias confluentControlCenterStart='cd ${CONFLUENT_HOME}; bin/control-center-star
 alias confluentControlCenterStop='cd ${CONFLUENT_HOME}; bin/control-center-stop etc/confluent-control-center/control-center-dev.properties'
 alias confluentConnectStart='cd ${CONFLUENT_HOME}; bin/connect-distributed etc/kafka/connect-distributed.properties'
 alias confluentConnectSAStart='cd ${CONFLUENT_HOME}; bin/connect-standalone etc/kafka/connect-standalone.properties'
-alias confluentConnectMongoStart='cd ${CONFLUENT_HOME}; bin/connect-distributed etc/schema-registry/connect-avro-distributed.properties etc/kafka/connect-mongo-source.properties'
-alias confluentConnectMongoSAStart='cd ${CONFLUENT_HOME}; bin/connect-standalone etc/schema-registry/connect-avro-standalone.properties etc/kafka/connect-mongo-source.properties'
+alias confluentConnectMongoStart='cd ${CONFLUENT_HOME}; bin/connect-distributed etc/schema-registry/connect-avro-distributed.properties etc/kafka/connect-mongodb-source.properties'
+alias confluentConnectMongoSAStart='cd ${CONFLUENT_HOME}; bin/connect-standalone etc/schema-registry/connect-avro-standalone.properties etc/kafka/connect-mongodb-source.properties'
 
 alias dockerLensesIOFastDataDev='docker run --rm --net=host lensesio/fast-data-dev'
 alias dockerLensesIOSchemaUI='docker run --rm -it -p 127.0.0.1:8710:8000 -e "SCHEMAREGISTRY_URL=http://localhost:8081" landoop/schema-registry-ui'
