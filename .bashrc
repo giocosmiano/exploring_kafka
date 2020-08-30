@@ -205,15 +205,36 @@ export STYLISH_HASKELL="${HOME}/.local/bin"
 export ELASTIC_SEARCH_HOME="${APPLICATIONS_HOME}/elasticsearch-6.4.3"
 export ELASTIC_SEARCH_BIN="${ELASTIC_SEARCH_HOME}/bin"
 
+alias elasticsearch-restart='sudo systemctl restart elasticsearch.service'
+alias elasticsearch-start='sudo systemctl start elasticsearch.service'
+alias elasticsearch-stop='sudo systemctl stop elasticsearch.service'
+alias elasticsearch-status='sudo systemctl status elasticsearch.service'
+alias elasticsearch-enable='sudo systemctl enable elasticsearch.service'
+alias elasticsearch-disable='sudo systemctl disable elasticsearch.service'
+
 # Kibana
 # https://www.elastic.co/downloads/
 export KIBANA_HOME="${APPLICATIONS_HOME}/kibana-6.4.3"
 export KIBANA_BIN="${KIBANA_HOME}/bin"
 
+alias kibana-restart='sudo systemctl restart kibana.service'
+alias kibana-start='sudo systemctl start kibana.service'
+alias kibana-stop='sudo systemctl stop kibana.service'
+alias kibana-status='sudo systemctl status kibana.service'
+alias kibana-enable='sudo systemctl enable kibana.service'
+alias kibana-disable='sudo systemctl disable kibana.service'
+
 # Logstash
 # https://www.elastic.co/downloads/
 export LOGSTASH_HOME="${APPLICATIONS_HOME}/logstash-6.4.3"
 export LOGSTASH_BIN="${LOGSTASH_HOME}/bin"
+
+alias logstash-restart='sudo systemctl restart logstash.service'
+alias logstash-start='sudo systemctl start logstash.service'
+alias logstash-stop='sudo systemctl stop logstash.service'
+alias logstash-status='sudo systemctl status logstash.service'
+alias logstash-enable='sudo systemctl enable logstash.service'
+alias logstash-disable='sudo systemctl disable logstash.service'
 
 # Confluent Kafka
 # https://www.confluent.io/download/#

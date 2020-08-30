@@ -1,0 +1,74 @@
+[Unit]
+Wants=network-online.target
+After=network-online.target
+Documentation=https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+
+# Based on ES v6.4
+# https://github.com/elastic/elasticsearch/blob/6.4/distribution/packages/src/common/systemd/elasticsearch.service
+
+[Service]
+Type=simple
+User=gio
+
+Environment=ES_HOME=/home/gio/Documents/_applications/elasticsearch-6.4.3
+Environment=CONF_DIR=/home/gio/Documents/_applications/elasticsearch-6.4.3/config
+Environment=CONF_FILE=/home/gio/Documents/_applications/elasticsearch-6.4.3/config/elasticsearch.yml
+Environment=DATA_DIR=/home/gio/Documents/_applications/elasticsearch-6.4.3/data
+Environment=LOG_DIR=/home/gio/Documents/_applications/elasticsearch-6.4.3/logs
+Environment=PID_DIR=/home/gio/Documents/_applications/elasticsearch-6.4.3/pid
+#EnvironmentFile=-/home/gio/Documents/_applications/elasticsearch-6.4.3
+
+WorkingDirectory=/home/gio/Documents/_applications/elasticsearch-6.4.3
+
+# for older version???
+#ExecStart=/home/gio/Documents/_applications/elasticsearch-6.4.3/bin/elasticsearch \
+#                                                -Des.pidfile=$PID_DIR/elasticsearch.pid \
+#                                                -Des.default.path.home=$ES_HOME \
+#                                                -Des.default.path.logs=$LOG_DIR \
+#                                                -Des.default.path.data=$DATA_DIR \
+#                                                -Des.default.config=$CONF_FILE \
+#                                                -Des.default.path.conf=$CONF_DIR
+
+ExecStart=/home/gio/Documents/_applications/elasticsearch-6.4.3/bin/elasticsearch -p ${PID_DIR}/elasticsearch.pid --quiet
+#ExecStart=/home/gio/Documents/_applications/elasticsearch-6.4.3/bin/elasticsearch /home/gio/Documents/_applications/elasticsearch-6.4.3/config/elasticsearch.yml -p ${PID_DIR}/elasticsearch.pid --quiet
+#ExecStop=/home/gio/Documents/_applications/elasticsearch-6.4.3/bin/elasticsearch
+Restart=on-abnormal
+
+# StandardOutput is configured to redirect to journalctl since
+# some error messages may be logged in standard output before
+# elasticsearch logging system is initialized. Elasticsearch
+# stores its logs in /var/log/elasticsearch and does not use
+# journalctl by default. If you also want to enable journalctl
+# logging, you can simply remove the "quiet" option from ExecStart.
+#StandardOutput=journal
+#StandardError=inherit
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65536
+
+# Specifies the maximum number of processes
+LimitNPROC=4096
+
+# Specifies the maximum size of virtual memory
+LimitAS=infinity
+
+# Specifies the maximum file size
+LimitFSIZE=infinity
+
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=0
+
+# SIGTERM signal is used to stop the Java process
+KillSignal=SIGTERM
+
+# Send the signal only to the JVM rather than its control group
+KillMode=process
+
+# Java process is never killed
+SendSIGKILL=no
+
+# When a JVM receives a SIGTERM signal it exits with code 143
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+[Unit]
+After=network.target
+Documentation=https://www.elastic.co/guide/en/kibana/current/index.html
+
+[Service]
+Type=simple
+User=gio
+ExecStart=/home/gio/Documents/_applications/kibana-6.4.3/bin/kibana -c /home/gio/Documents/_applications/kibana-6.4.3/config/kibana.yml -l /home/gio/Documents/_applications/kibana-6.4.3/logs/kibana.log
+#ExecStart=/bin/sh -c '/home/gio/Documents/_applications/kibana-6.4.3/bin/kibana -c /home/gio/Documents/_applications/kibana-6.4.3/config/kibana.yml > /home/gio/Documents/_applications/kibana-6.4.3/logs/kibana.log 2>&1'
+#ExecStop=/home/gio/Documents/_applications/kibana-6.4.3/bin/kibana
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
+
