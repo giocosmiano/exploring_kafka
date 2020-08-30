@@ -267,12 +267,12 @@ alias kafkaStop='cd ${KAFKA_HOME}; bin/kafka-server-stop.sh config/server.proper
 # Configure to start automatically with the server
 # cp kafka.service to /etc/systemd/system
 # cp zookeeper.service to /etc/systemd/system
-alias kafka-restart='sudo systemctl restart zookeeper.service kafka.service'
-alias kafka-start='sudo systemctl start zookeeper.service kafka.service'
-alias kafka-stop='sudo systemctl stop zookeeper.service kafka.service'
-alias kafka-status='sudo systemctl status zookeeper.service kafka.service'
-alias kafka-enable='sudo systemctl enable zookeeper.service kafka.service'
-alias kafka-disable='sudo systemctl disable zookeeper.service kafka.service'
+alias kafka-restart='sudo systemctl restart zookeeper.service confluentKafka.service'
+alias kafka-start='sudo systemctl start zookeeper.service confluentKafka.service'
+alias kafka-stop='sudo systemctl stop zookeeper.service confluentKafka.service'
+alias kafka-status='sudo systemctl status zookeeper.service confluentKafka.service'
+alias kafka-enable='sudo systemctl enable zookeeper.service confluentKafka.service'
+alias kafka-disable='sudo systemctl disable zookeeper.service confluentKafka.service'
 
 # kafka trifecta UI
 # http://ldaniels528.github.io/trifecta/

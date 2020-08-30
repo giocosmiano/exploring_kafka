@@ -22,12 +22,12 @@
    export KAFKA_BIN="${KAFKA_HOME}/bin"
    export KAFKA_CONFIG="${KAFKA_HOME}/config"
 
-   alias kafka-restart='sudo systemctl restart kafka'
-   alias kafka-start='sudo systemctl start kafka'
-   alias kafka-stop='sudo systemctl stop kafka'
-   alias kafka-status='sudo systemctl status kafka'
-   alias kafka-enable='sudo systemctl enable kafka'
-   alias kafka-disable='sudo systemctl disable kafka'
+   alias kafka-restart='sudo systemctl restart confluentKafka'
+   alias kafka-start='sudo systemctl start confluentKafka'
+   alias kafka-stop='sudo systemctl stop confluentKafka'
+   alias kafka-status='sudo systemctl status confluentKafka'
+   alias kafka-enable='sudo systemctl enable confluentKafka'
+   alias kafka-disable='sudo systemctl disable confluentKafka'
 ```
 
 - Configure to start `kafka` automatically with the server

@@ -1,6 +1,6 @@
 [Unit]
-Requires=zookeeper.service
-After=zookeeper.service
+Requires=apacheZookeeper.service
+After=apacheZookeeper.service
 Documentation=https://kafka.apache.org/documentation
 
 [Service]

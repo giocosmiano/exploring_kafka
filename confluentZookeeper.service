@@ -1,0 +1,14 @@
+[Unit]
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+Documentation=https://zookeeper.apache.org
+
+[Service]
+Type=simple
+User=gio
+ExecStart=/home/gio/Documents/_applications/confluent-5.5.1/bin/zookeeper-server-start /home/gio/Documents/_applications/confluent-5.5.1/etc/kafka/zookeeper.properties
+ExecStop=/home/gio/Documents/_applications/confluent-5.5.1/bin/zookeeper-server-stop
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
