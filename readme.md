@@ -288,6 +288,29 @@ basicAuthentication.password="password"
   $ kafka-console-consumer --bootstrap-server localhost:9092 --topic mongoConn.sampleGioDB.books  --from-beginning
 ```
 
+## Connecting Kafka to Elasticsearch Sink
+  - [Confluent Supported Kafka Connectors](https://docs.confluent.io/current/connect/managing/connectors.html)
+  - [Elasticsearch Service Sink Connector for Confluent Platform](https://docs.confluent.io/current/connect/kafka-connect-elasticsearch/index.html)
+  - [Kafka Connect and Elasticsearch](https://rmoff.net/2019/10/07/kafka-connect-and-elasticsearch/)
+  - [Kafka Connect in Action: Elasticsearch](https://www.youtube.com/watch?v=Cq-2eGxOCc8&list=PL5T99fPsK7ppB_AbZhBhTyKHtHWZLWIJ8&index=6&t=0s)
+  - [Kafka Connect Elasticsearch Connector in Action](https://www.confluent.io/blog/kafka-elasticsearch-connector-tutorial/)
+  - [Building Streaming Data Pipelines with Elasticsearch, Apache Kafka, and KSQL](https://speakerdeck.com/rmoff/building-streaming-data-pipelines-with-elasticsearch-apache-kafka-and-ksql)
+  - Simplest Useful Kafka Connect Data Pipeline
+    - [Part 1](https://www.confluent.io/blog/simplest-useful-kafka-connect-data-pipeline-world-thereabouts-part-1/)
+    - [Part 2](https://www.confluent.io/blog/the-simplest-useful-kafka-connect-data-pipeline-in-the-world-or-thereabouts-part-2/)
+    - [Part 3](https://www.confluent.io/blog/simplest-useful-kafka-connect-data-pipeline-world-thereabouts-part-3/)
+  - Elasticsearch results after running `connector standalone elasticsearch sink`. Note, `kafka topic=mongoConn.sampleGioDB.books` is converted to lowercase such as `elasticsearch index=mongoconn.samplegiodb.books`
+    - [`http://localhost:9200/_cat/indices`](http://localhost:9200/_cat/indices)
+    - [`http://localhost:9200/mongoconn.samplegiodb.books`](http://localhost:9200/mongoconn.samplegiodb.books)
+    - [`http://localhost:9200/mongoconn.samplegiodb.books/_search`](http://localhost:9200/mongoconn.samplegiodb.books/_search)
+```shell script
+  $ kafka-topics --list --zookeeper localhost:2181
+  $ cd $CONFLUENT_HOME
+  $ bin/connect-standalone  etc/schema-registry/connect-avro-standalone.properties  etc/kafka-connect-elasticsearch/connect-elasticsearch-sink.properties  ### This worked so use this
+  $ bin/connect-distributed etc/schema-registry/connect-avro-distributed.properties etc/kafka-connect-elasticsearch/connect-elasticsearch-sink.properties  ### Doesn't work. Still needs to investigate why??? 
+  $ kafka-console-consumer --bootstrap-server localhost:9092 --topic mongoConn.sampleGioDB.books  --from-beginning
+```
+
 ## Setting up Confluent Kafka Connect Plugins such as Kafka Connector MongoDB Source
   - [Kafka connect plugin install](https://gquintana.github.io/2019/12/10/Kafka-connect-plugin-install.html)
   - [How to install connector plugins in Kafka Connect](https://rmoff.net/2020/06/19/how-to-install-connector-plugins-in-kafka-connect/)
