@@ -279,12 +279,16 @@ basicAuthentication.password="password"
       - mongodb.name = mongoConn (see connect-mongodb-source.properties)
       - db name is `sampleGioDB` (in Mongo)
       - collection name is `books` (in Mongo)
+  - [MongoDB Source Connector in `http://localhost:8183/connectors`](http://localhost:8183/connectors)
+    - using `bin/connect-standalone` script with overridden configs
+      - [MongoDB Source Worker Config - etc/schema-registry/connect-avro-standalone-mongodb-source.properties](confluent/etc/schema-registry/connect-avro-standalone-mongodb-source.properties)
+      - [MongoDB Source Connector Config - etc/kafka/connect-mongodb-source.properties](confluent/etc/kafka/connect-mongodb-source.properties)
 ```shell script
   $ kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mongoConn.sampleGioDB.books
   $ kafka-topics --list --zookeeper localhost:2181
   $ cd $CONFLUENT_HOME
-  $ bin/connect-standalone  etc/schema-registry/connect-avro-standalone.properties  etc/kafka/connect-mongodb-source.properties  ### This worked so use this
-  $ bin/connect-distributed etc/schema-registry/connect-avro-distributed.properties etc/kafka/connect-mongodb-source.properties  ### Doesn't work. Still needs to investigate why??? 
+  $ bin/connect-standalone  etc/schema-registry/connect-avro-standalone-mongodb-source.properties  etc/kafka/connect-mongodb-source.properties  ### This worked so use this
+  $ bin/connect-distributed etc/schema-registry/connect-avro-distributed-mongodb-source.properties etc/kafka/connect-mongodb-source.properties  ### Doesn't work. Still needs to investigate why??? 
   $ kafka-console-consumer --bootstrap-server localhost:9092 --topic mongoConn.sampleGioDB.books  --from-beginning
 ```
 
@@ -299,6 +303,10 @@ basicAuthentication.password="password"
     - [Part 1](https://www.confluent.io/blog/simplest-useful-kafka-connect-data-pipeline-world-thereabouts-part-1/)
     - [Part 2](https://www.confluent.io/blog/the-simplest-useful-kafka-connect-data-pipeline-in-the-world-or-thereabouts-part-2/)
     - [Part 3](https://www.confluent.io/blog/simplest-useful-kafka-connect-data-pipeline-world-thereabouts-part-3/)
+  - [Elasticsearch Sink Connector in `http://localhost:8283/connectors`](http://localhost:8283/connectors)
+    - using `bin/connect-standalone` script with overridden configs
+      - [Elasticsearch Sink Worker Config - etc/schema-registry/connect-avro-standalone-elasticsearch-sink.properties](confluent/etc/schema-registry/connect-avro-standalone-elasticsearch-sink.properties)
+      - [Elasticsearch Sink Connector Config - etc/kafka-connect-elasticsearch/connect-elasticsearch-sink.properties](confluent/etc/kafka-connect-elasticsearch/connect-elasticsearch-sink.properties)
   - Elasticsearch results after running `connector standalone elasticsearch sink`. Note, `kafka topic=mongoConn.sampleGioDB.books` is converted to lowercase such as `elasticsearch index=mongoconn.samplegiodb.books`
     - [`http://localhost:9200/_cat/indices`](http://localhost:9200/_cat/indices)
     - [`http://localhost:9200/mongoconn.samplegiodb.books`](http://localhost:9200/mongoconn.samplegiodb.books)
@@ -306,8 +314,8 @@ basicAuthentication.password="password"
 ```shell script
   $ kafka-topics --list --zookeeper localhost:2181
   $ cd $CONFLUENT_HOME
-  $ bin/connect-standalone  etc/schema-registry/connect-avro-standalone.properties  etc/kafka-connect-elasticsearch/connect-elasticsearch-sink.properties  ### This worked so use this
-  $ bin/connect-distributed etc/schema-registry/connect-avro-distributed.properties etc/kafka-connect-elasticsearch/connect-elasticsearch-sink.properties  ### Doesn't work. Still needs to investigate why??? 
+  $ bin/connect-standalone  etc/schema-registry/connect-avro-standalone-elasticsearch-sink.properties  etc/kafka-connect-elasticsearch/connect-elasticsearch-sink.properties  ### This worked so use this
+  $ bin/connect-distributed etc/schema-registry/connect-avro-distributed-elasticsearch-sink.properties etc/kafka-connect-elasticsearch/connect-elasticsearch-sink.properties  ### Doesn't work. Still needs to investigate why??? 
   $ kafka-console-consumer --bootstrap-server localhost:9092 --topic mongoConn.sampleGioDB.books  --from-beginning
 ```
 
