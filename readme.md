@@ -365,6 +365,13 @@ plugin.path=$HOME/Documents/_applications/confluent-5.5.1/share/java,$HOME/Docum
    ksql> print 'mongoConn.sampleGioDB.books' from beginning;
 ```
 
+## [Confluent Kafka Connect in Standalone/Distributed Mode](https://docs.confluent.io/current/connect/userguide.html#running-workers)
+  - [Confluent Distributed Mode](https://docs.confluent.io/current/connect/userguide.html#connect-userguide-distributed-config)
+  - [Confluent Distributed Configuration Properties](https://docs.confluent.io/current/connect/userguide.html#connect-userguide-dist-worker-config)
+  - [Confluent Worker Configuration Properties](https://docs.confluent.io/current/connect/userguide.html#worker-configuration-properties)
+  - [Running Kafka Connect](https://supergloo.com/kafka-connect/) 
+  - [Running Kafka Connect – Standalone vs Distributed Mode Examples](https://supergloo.com/kafka-connect/running-kafka-connect-standalone-vs-distributed-mode-examples/)
+
 ## Kafka Blogs
   - [Kafka Architecture](https://dzone.com/articles/kafka-architecture)
   - [4 Key Benefits of Apache Kafka for Real-Time Data](https://business-staging.udemy.com/blog/4-key-benefits-of-apache-kafka-for-real-time-data/)
@@ -372,6 +379,10 @@ plugin.path=$HOME/Documents/_applications/confluent-5.5.1/share/java,$HOME/Docum
   - [Kafka Streams](https://dzone.com/articles/kafka-streams-1)
   - [Kafka Technical Overview](https://dzone.com/articles/kafka-technical-overview)
   - [Kafka Detailed Design and Ecosystem](https://dzone.com/articles/kafka-detailed-design-and-ecosystem)
+  - [Kafka Tutorials](https://supergloo.com/kafka-tutorial/)
+  - [Kafka Producer](https://supergloo.com/kafka/kafka-producer/)
+  - [Kafka Consumer](https://supergloo.com/kafka/kafka-consumer/)
+  - [Kafka Consumer Groups](https://supergloo.com/kafka/kafka-consumer-groups/)
 
 ## Kafka Diagrams
   - Multiple Integrations
