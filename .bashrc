@@ -119,6 +119,8 @@ fi
 # NVM 
 # ubuntu nvm install
 # https://github.com/nvm-sh/nvm
+# https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04/
+# https://asibin99.medium.com/how-to-use-node-version-manager-nvm-on-ubuntu-20-04-fa71c9929f51
 # https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04
 # https://hackernoon.com/how-to-install-node-js-on-ubuntu-16-04-18-04-using-nvm-node-version-manager-668a7166b854
 export NVM_DIR="$HOME/.nvm"
@@ -133,15 +135,15 @@ alias vpnui='/opt/cisco/anyconnect/bin/vpnui'
 
 # Java
 export JDK8_HOME="${APPLICATIONS_HOME}/amazon-corretto-8.252.09.1-linux-x64"
-export JDK14_HOME="${APPLICATIONS_HOME}/openjdk-14.0.1"
+export JDK17_HOME="${APPLICATIONS_HOME}/openjdk-17.0.1"
 
-#export JAVA_HOME="${JDK8_HOME}"
+#export JAVA_HOME="${JDK17_HOME}"
 #export JAVA_BIN="${JAVA_HOME}/bin"
 export JVM_ARGS="-Xms512m -Xmx1024m -XX:MaxPermSize=512m"
 
 # Scala
 # https://www.scala-lang.org/download/
-export SCALA_HOME="${APPLICATIONS_HOME}/scala-2.12.11"
+export SCALA_HOME="${APPLICATIONS_HOME}/scala-2.13.6"
 export SCALA_BIN="${SCALA_HOME}/bin"
 
 # SBT
@@ -172,7 +174,7 @@ export TOMCAT_HOME="${APPLICATIONS_HOME}/apache-tomcat/apache-tomcat-8.0.8"
 export TOMCAT_LIB="${TOMCAT_HOME}\bin"
 
 # IntelliJ Idea
-export INTELLIJ_HOME="${APPLICATIONS_HOME}/idea-IU-193.6494.35"
+export INTELLIJ_HOME="${APPLICATIONS_HOME}/idea-IU-202.6948.69"
 export INTELLIJ_LIB="${INTELLIJ_HOME}/bin"
 export INTELLIJ_ARGS="-Xms1024m -Xmx2048m -XX:MaxPermSize=512m"
 alias intellij='"${INTELLIJ_LIB}"/idea.sh;'
@@ -424,11 +426,26 @@ alias docker-status='sudo systemctl status docker'
 alias docker-enable='sudo systemctl enable docker'
 alias docker-disable='sudo systemctl disable docker'
 
+# ubuntu postgreSQL install
+# https://tecadmin.net/how-to-install-postgresql-in-ubuntu-20-04/
+# https://www.postgresqltutorial.com/install-postgresql-linux/
+# https://www.postgresql.org/docs/current/index.html
+alias postgres-restart='sudo systemctl restart postgresql'
+alias postgres-start='sudo systemctl start postgresql'
+alias postgres-stop='sudo systemctl stop postgresql'
+alias postgres-status='sudo systemctl status postgresql'
+alias postgres-enable='sudo systemctl enable postgresql'
+alias postgres-disable='sudo systemctl disable postgresql'
+alias postgres-disable='sudo systemctl is-active postgresql'
+alias postgres-disable='sudo systemctl is-enabled postgresql'
+
 # Maven
 export MAVEN_HOME="${APPLICATIONS_HOME}/apache-maven-3.6.3"
 export MAVEN_BIN="${MAVEN_HOME}/bin"
 
 # Path
+#PATH="${JAVA_HOME}:$PATH"
+#PATH="${JAVA_BIN}:$PATH"
 #PATH="${JAVA_BIN}:${NODEJS_LIB}:${SCALA_BIN}:${SBT_BIN}:${STACK_BIN}:${INTELLIJ_LIB}:${WEBSTORM_LIB}:${TOMCAT_LIB}:${STYLISH_HASKELL}:$PATH"
 #PATH="${JAVA_BIN}:${NODEJS_LIB}:${SCALA_BIN}:${SBT_BIN}:${GHC_HOME}:${STACK_BIN}:${GRADLE_BIN}:${INTELLIJ_LIB}:${WEBSTORM_LIB}:${TOMCAT_LIB}:$PATH"
 #PATH="${NODEJS_LIB}:${SCALA_BIN}:${SBT_BIN}:${GHC_HOME}:${STACK_BIN}:${GRADLE_BIN}:${GROOVY_BIN}:${INTELLIJ_LIB}:${WEBSTORM_LIB}:${TOMCAT_LIB}:${KAFKA_BIN}:${KAFKA_CONFIG}:$PATH"
@@ -461,8 +478,14 @@ export PATH
 
 alias jdk8='cd ~; . jdk8.sh'
 alias jdk14='cd ~; . jdk14.sh'
+alias jdk15='cd ~; . jdk15.sh'
+alias jdk16='cd ~; . jdk16.sh'
+alias jdk17='cd ~; . jdk17.sh'
 alias openjdk8='cd ~; . openjdk8.sh'
 alias openjdk14='cd ~; . openjdk14.sh'
+alias openjdk15='cd ~; . openjdk15.sh'
+alias openjdk16='cd ~; . openjdk16.sh'
+alias openjdk17='cd ~; . openjdk17.sh'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -493,3 +516,4 @@ export SDKMAN_DIR="/home/gio/.sdkman"
 # $HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/debezium-debezium-connector-mysql/*
 # $HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/jcustenborder-kafka-connect-redis/*
 # $HOME/Documents/_applications/confluent-5.5.1/share/confluent-hub-components/mongodb-kafka-connect-mongodb/*"
+source "$HOME/.cargo/env"
